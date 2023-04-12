@@ -9,8 +9,5 @@
         <module name="IR" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="IR" target="0" />
-    </bytecodeTargetLevel>
   </component>
 </project>
