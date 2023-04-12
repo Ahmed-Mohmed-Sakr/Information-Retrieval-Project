@@ -5,8 +5,13 @@
 package DataSet;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 
 
@@ -19,9 +24,34 @@ import java.io.IOException;
 public class ReadData {
     
     
-    public static void main(String[] args) {
-        String[][] res = readCisiRelFile( "/home/yousef/level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/CISI.QRY" );
-        System.out.println(res[3].length);
+    public static void main(String[] args) throws FileNotFoundException {
+        String[] res = readTokensFromFile( "/home/yousef/level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/CISI.QRY" );
+        System.out.println(res.length);
+    }
+    
+    public static String[] readTokensFromFile(String filename) throws FileNotFoundException {
+        // Open the file for reading
+        File file = new File(filename);
+        Scanner scanner = new Scanner(file);
+
+        // Create an array to hold the tokens
+        List<String> tokens = new ArrayList<String>();
+
+        // Loop through each line of the file
+        while (scanner.hasNextLine()) {
+            // Read the line and split it into tokens
+            String line = scanner.nextLine();
+            String[] lineTokens = line.split("\\s+");
+
+            // Add each token to the array
+            for (String token : lineTokens) {
+                tokens.add(token);
+            }
+        }
+
+        // Close the scanner and return the array of tokens
+        scanner.close();
+        return tokens.toArray(new String[tokens.size()]);
     }
     
     public static String[][] readCisiRelFile(String fileName) {
