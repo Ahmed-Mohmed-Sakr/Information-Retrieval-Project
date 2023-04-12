@@ -7,12 +7,13 @@ import javafx.stage.Stage;
 import MainApp.mainApp;
 
 import java.io.IOException;
+import javafx.scene.Parent;
 
 public class mainApp  extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(mainApp.class.getResource("configrationScene.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene((Parent) fxmlLoader.load());
 
         stage.setResizable(false);
         stage.setTitle("IR 2023!");
