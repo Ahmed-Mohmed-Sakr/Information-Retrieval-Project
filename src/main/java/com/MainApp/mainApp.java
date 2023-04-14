@@ -1,10 +1,9 @@
-package MainApp;
+package com.MainApp;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import MainApp.mainApp;
 
 import java.io.IOException;
 import javafx.scene.Parent;

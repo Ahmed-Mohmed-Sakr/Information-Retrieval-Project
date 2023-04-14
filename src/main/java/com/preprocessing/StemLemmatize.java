@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package preprocessing;
+package com.preprocessing;
 
 
 
@@ -14,7 +14,6 @@ import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;

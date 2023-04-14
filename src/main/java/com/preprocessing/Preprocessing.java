@@ -1,4 +1,4 @@
-package preprocessing;
+package com.preprocessing;
 
 /**
  * @author Wegdan
@@ -6,20 +6,7 @@ package preprocessing;
 
 import java.util.ArrayList;
 
-/**
- * convert this class to do all the preprocessing
- * find storage way do storage and retrieval for incidence matrix index
- * tie all this steps together with the gui,
- * so we will do preprocessing before indexing
- * do indexing
- * store the index
- *
- * when search
- * check if there is index
- * then load it
- * do your search and query
- * visualize the data
- */
+
 public class Preprocessing {
 
     public static ArrayList<String> preprocess(String str,

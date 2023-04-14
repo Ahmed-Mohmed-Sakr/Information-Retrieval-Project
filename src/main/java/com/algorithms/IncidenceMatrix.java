@@ -1,4 +1,4 @@
-package algorithms;
+package com.algorithms;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import java.util.TreeMap;
  */
 public class IncidenceMatrix {
 
+    public static Map<String,List<Boolean>> glopalMatrix;
     /**
      * this function take the documents as an input and return matrix if
      * word exist its value will be true else it will be false
@@ -25,19 +26,19 @@ public class IncidenceMatrix {
 
         List<String> tokens=documents.stream().flatMap(List::stream).toList();
         for(var token:tokens){
-            matrix.put(token,new ArrayList<>(documents.size()));
+            ArrayList<Boolean> arr=new ArrayList<>();
+            for(int i=0;i<documents.size();i++){
+                arr.add(false);
+            }
+            matrix.put(token,arr);
         }
 
-        matrix.forEach((key,value)->{
-            for(var x:value){
-                x=false;
-            }
-        });
         for(int i=0;i<documents.size();i++){
             for(var x:documents.get(i)){
                 matrix.get(x).set(i,true);
             }
         }
+        glopalMatrix=matrix;
         return matrix;
     }
 }

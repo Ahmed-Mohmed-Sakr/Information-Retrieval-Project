@@ -4,6 +4,6 @@ module MainApp {
     requires org.apache.opennlp.tools;
 
 
-    opens MainApp to javafx.fxml;
-    exports MainApp;
+    opens com.MainApp to javafx.fxml;
+    exports com.MainApp;
 }

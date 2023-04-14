@@ -1,4 +1,4 @@
-package preprocessing;
+package com.preprocessing;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
