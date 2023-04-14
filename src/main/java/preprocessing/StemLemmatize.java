@@ -16,11 +16,18 @@ import opennlp.tools.postag.POSTaggerME;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StemLemmatize {
 
-    public static String[] lemmatizeTokens(String[] tokens) throws Exception {
+    public static ArrayList<String> lemmatizeTokens(ArrayList<String> inputTokens) throws Exception {
 
+        String[] tokens=new String[inputTokens.size()];
+        int count=0;
+        for (String inputToken : inputTokens) {
+            tokens[count++]=inputToken;
+        }
 
         InputStream inputStreamPOSTagger = new FileInputStream("D:\\AFinalYear\\IR\\Information-Retrieval-Project\\archive\\en-pos-maxent.bin");
         POSModel posModel = new POSModel(inputStreamPOSTagger);
@@ -31,7 +38,7 @@ public class StemLemmatize {
                 dictLemmatizer);
         String[] lemmas = lemmatizer.lemmatize(tokens, tags);
 
-        return lemmas;
+        return new ArrayList<>(Arrays.asList(lemmas));
     }
 
 }

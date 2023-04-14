@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public class TextCleaning {
 
-    ArrayList<String> tokenWord;
+
 
     public ArrayList<String> Tokenization(String doc) {
 
@@ -24,7 +24,7 @@ public class TextCleaning {
 
     }
 
-    public ArrayList<String> stopWords(String str) {
+    public ArrayList<String> stopWords(ArrayList<String> tokens) {
 
         Set<String> stopWords = new HashSet<String>();
         stopWords.addAll(Arrays.asList(new String[]{"ourselves",
@@ -40,20 +40,15 @@ public class TextCleaning {
             "because", "what", "over", "why", "so", "can", "did", "not", "now", "under",
             "he", "you", "herself", "has", "just", "where", "too", "only", "myself",
             "which", "those", "i", "after", "few", "whom", "t", "being", "if", "theirs", "my",
-            "against", "a", "by", "doing", "it", "how", "further", "was", "here", "than"}));
-        ArrayList<String> newTokenz = new ArrayList<String>();
-        tokenWord = Tokenization(str);
+            "against", "a", "by", "doing", "it", "how", "further", "was", "here", "than","O","\n"," "}));
+        ArrayList<String> newTokenz = new ArrayList<>();
 
-        for (String words : tokenWord) {
+        for (String words : tokens) {
             if (!stopWords.contains(words)) {
                 newTokenz.add(words);
             }
         }
-        /*
-        for (String token : newTokenz) {
-            System.out.println(token);
-        }
-*/
+
         return newTokenz;
     }
 

@@ -1,71 +1,85 @@
 package preprocessing;
 
-import opennlp.tools.tokenize.SimpleTokenizer;
+/**
+ * @author Wegdan
+ */
 
-import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
 
 /**
+ * convert this class to do all the preprocessing
+ * find storage way do storage and retrieval for incidence matrix index
+ * tie all this steps together with the gui,
+ * so we will do preprocessing before indexing
+ * do indexing
+ * store the index
  *
- * @author Wegdan
+ * when search
+ * check if there is index
+ * then load it
+ * do your search and query
+ * visualize the data
  */
 public class Preprocessing {
 
-    public static void main(String[] args) throws Exception {
-
-
-        // TextCleaning c = new TextCleaning();
-
-        // BufferedReader br = new BufferedReader(new FileReader("C://Users//Wegdan//Documents//NetBeansProjects//Preprocessing//dataDir//textfile.txt"));
-        // String st;
-        // // c.stopWords("and or or/and m:lk");
-        // ArrayList<String> s1 = new ArrayList<>();
-        // while ((st = br.readLine()) != null) {
-
-        //     c.Tokenization(st);
-
-        //     s1.addAll(c.stopWords(st));
-        // }
-        // ArrayList<String> stre = c.normailzation(s1);
-
-        // PorterStemmer stemmer = new PorterStemmer();
-        // for(String words  : stre){
-        //     stemmer.add(words.toCharArray(), words.length());
-        //     stemmer.stem();
-        //     String out = new String(stemmer.getResultBuffer(), 0, stemmer.getResultLength());
-        //     System.out.println("Before "+words+" Stemmed word: " + out);
-        // }
-        System.out.println("apache open nlp lemmatizer");
-        String text = "How could you be seeing into my eyes like open doors? \n"+
-                "You led me down into my core where I've became so numb \n"+
-                "Without a soul my spirit's sleeping somewhere cold \n"+
-                "Until you find it there and led it back home \n"+
-                "You woke me up inside \n"+
-                "Called my name and saved me from the dark \n"+
-                "You have bidden my blood and it ran \n"+
-                "Before I would become undone \n"+
-                "You saved me from the nothing I've almost become \n"+
-                "You were bringing me to life \n"+
-                "Now that I knew what I'm without \n"+
-                "You can've just left me \n"+
-                "You breathed into me and made me real \n"+
-                "Frozen inside without your touch \n"+
-                "Without your love, darling \n"+
-                "Only you are the life among the dead \n"+
-                "I've been living a lie, there's nothing inside \n"+
-                "You were bringing me to life.";
-        SimpleTokenizer tokenizer = SimpleTokenizer.INSTANCE;
-        String[] tokens = tokenizer.tokenize(text);
-        String[] res=StemLemmatize.lemmatizeTokens(tokens);
-        for(var x:res){
-            System.out.println(x);
+    public static ArrayList<String> preprocess(String str,
+            boolean stopWords, boolean normalization, boolean Stemming, boolean lemma) throws Exception {
+        TextCleaning textCleaning = new TextCleaning();
+        ArrayList<String> tokens = textCleaning.Tokenization(str);
+        if(stopWords)
+            tokens=textCleaning.stopWords(tokens);
+        if (normalization) {
+            tokens = textCleaning.normailzation(tokens);
         }
+        if(Stemming){
+            PorterStemmer stemmer = new PorterStemmer();
+            ArrayList<String> stemOut=new ArrayList<>();
+          for(String words  : tokens){
+               stemmer.add(words.toCharArray(), words.length());
+               stemmer.stem();
+               String out = new String(stemmer.getResultBuffer(), 0, stemmer.getResultLength());
+               stemOut.add(out);
+          }
+          tokens=stemOut;
+        }
+        if(lemma){
+             tokens=StemLemmatize.lemmatizeTokens(tokens);
+        }
+        tokens.removeIf((String x)->x.equals("O"));
+        return tokens;
     }
+
+//    public static void main(String [] args) throws Exception {
+//        String text = "How could you be seeing into my eyes like open doors? \n"+
+//                "You led me down into my core where I've became so numb \n"+
+//                "Without a soul my spirit's sleeping somewhere cold \n"+
+//                "Until you find it there and led it back home \n"+
+//                "You woke me up inside \n"+
+//                "Called my name and saved me from the dark \n"+
+//                "You have bidden my blood and it ran \n"+
+//                "Before I would become undone \n"+
+//                "You saved me from the nothing I've almost become \n"+
+//                "You were bringing me to life \n"+
+//                "Now that I knew what I'm without \n"+
+//                "You can've just left me \n"+
+//                "You breathed into me and made me real \n"+
+//                "Frozen inside without your touch \n"+
+//                "Without your love, darling \n"+
+//                "Only you are the life among the dead \n"+
+//                "I've been living a lie, there's nothing inside \n"+
+//                "You were bringing me to life.";
+//
+//        var res=preprocess(text,true,true,true,true);
+//
+//        res.forEach(System.out::println);
+//
+//    }
     /*
-    * Tokenization ✅
-    * StopWords ✅
-    * Normalization ✅
-    * Stemming ✅
-    * Lemma
-    * */
+     * Tokenization ✅
+     * StopWords ✅
+     * Normalization ✅
+     * Stemming ✅
+     * Lemma ✅
+     * */
 }
+
