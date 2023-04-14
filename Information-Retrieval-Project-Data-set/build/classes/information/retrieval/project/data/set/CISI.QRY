@@ -359,7 +359,7 @@ Bennion, B.C.
 their ability to direct a user selectively to text material whose identity
 but not location is known.  The method requires human searchers to base
 their searching strategies on actual passages from the book rather than on
-test queries, natural or contrived.  It circumvents the need for relevance
+com.com.test queries, natural or contrived.  It circumvents the need for relevance
 judgement, but still yields performance indicators that correspond
 approximately to the recall and precision ratios of large document retrieval
 system evaluation.  A preliminary application of the method to the subject
@@ -382,7 +382,7 @@ Eaton, E.A. III
     A linkage similarity measure which takes into account both the bibliographic
 coupling of documents and their cocitations (both cited and citing papers)
 produced improved document retrieval over a measure based only on
-bibliographic coupling.  The test collection consisted of 1712 papers whose
+bibliographic coupling.  The com.com.test collection consisted of 1712 papers whose
 relevance to specific queries had been judged by users.  To evaluate the
 effect of using cocitation data, we calculated for each query two measures
 of similarity between each relevant paper and every other paper retrieved.
@@ -929,7 +929,7 @@ legality controller).  The vertical level ensures the possibility of changing
 particular version of the system is oriented and specialized in a simple,
 incremental, and user-oriented way.  In the paper the general architecture of
 the system and the mode of operation of each segment are illustrated in
-detail.  Linguistic models, knowledge representation, and parsing algorithms
+detail.  Linguistic models, knowledge representation, and parsing com.algorithms
 are described and illustrated by means of selected examples.  Performance
 evaluations of the system in the application version on data base inquiry are
 reported and discussed.  Promising directions for future research are presented
@@ -1128,7 +1128,7 @@ small-scale experiment on an English database, and indicate that in contrast
 to global clustering where the size of matrices limits applications to small
 databases and improvements are doubtful, local metrical methods appear to be
 well suited to arbitrarily large databases, improving precision and recall
-simultaneously.  Further experiments using more test-queries run on even
+simultaneously.  Further experiments using more com.com.test-queries run on even
 larger databases should be made to collect further evidence as to the
 performance of these methods.
 .B
@@ -1146,7 +1146,7 @@ environments.  The problem of information retrieval is discussed from a
 theoretical point of view, followed by an analysis of the reference process
 and data thereby gathered, leading to a description of REFLES in terms of
 its hardware and software.  REFLES, a prototype system at present, currently
-functions in a test environment.  Examples of data contained in the system
+functions in a com.com.test environment.  Examples of data contained in the system
 and of its use are presented.  Future considerations and speculations on
 other versions of the system conclude the paper.
 .B
@@ -1284,7 +1284,7 @@ Bergmark, D.
 .W
     Conventional information retrieval processes are largely based on data
 movement, pointer manipulations and integer arithmetic; more refined retrieval
-algorithms may in addition benefit from substantial computational power.
+com.algorithms may in addition benefit from substantial computational power.
 
     In the present study a number of parallel processing methods are described
 that serve to enhance retrieval services.  In conventional retrieval
@@ -1354,7 +1354,7 @@ index term vocabulary.  A number of different spanning trees are generated from
 a variety of association measures.  The retrieval effectiveness for the
 different spanning trees is shown to be approximately the same.  Effectiveness
 is measured in terms of precision and recall, and the retrieval tests are done
-on three different test collections.
+on three different com.com.test collections.
 .B
 (Information Processing & Management, Vol. 17, No. 2, 1981, pp. 77-91)
 
@@ -1388,7 +1388,7 @@ to secondary information which is generally in such forms as:  an abstract, a
 table of contents, or an index.
     Full text databases were created in two subject areas and queries solicited
 from specialists in each area.  An automated full text indexing system, along
-with four automated passage retrieval systems, was created to test the various
+with four automated passage retrieval systems, was created to com.com.test the various
 features of the Colon Classification.  Two Boolean-based systems and one simple
 word occurrence system were created in order to compare the retrieval results
 against types of systems which are in more common use.  The systems' retrieval
@@ -1409,7 +1409,7 @@ Tague, J.M.
 user queries and the vocabulary of documents relevant to the queries, and
 the value of adding to the document description record in a retrieval system
 keywords from previous queries for which the document had proved useful.
-Two test databases incorporating user query keywords were implemented at
+Two com.com.test databases incorporating user query keywords were implemented at
 the School of Library and Information Science, University of Western
 Ontario.  Clustering of the documents via title and user keywords, a
 statistical analysis of title-user keyword co-occurrences, and retrieval

@@ -1,4 +1,4 @@
-package preprocessing;
+package com.preprocessing;
 
 /*
 
@@ -22,7 +22,7 @@ package preprocessing;
    Similarly,
 
    Bug 2 (reported by Steve Dyrdahl 22/2/00) fixed as marked below.
-   'ion' by itself leaves j = -1 in the test for 'ion' in step 5, and
+   'ion' by itself leaves j = -1 in the com.com.test for 'ion' in step 5, and
    b[j] is then outside the bounds of b.
 
    Release 3
@@ -389,19 +389,19 @@ class PorterStemmer
                             ch = in.read();
                             if (!Character.isLetter((char) ch))
                             {
-                                /* to test add(char ch) */
+                                /* to com.com.test add(char ch) */
                                 for (int c = 0; c < j; c++) s.add(w[c]);
 
-                                /* or, to test add(char[] w, int j) */
+                                /* or, to com.com.test add(char[] w, int j) */
                                 /* s.add(w, j); */
 
                                 s.stem();
                                 {  String u;
 
-                                    /* and now, to test toString() : */
+                                    /* and now, to com.com.test toString() : */
                                     u = s.toString();
 
-                                    /* to test getResultBuffer(), getResultLength() : */
+                                    /* to com.com.test getResultBuffer(), getResultLength() : */
                                     /* u = new String(s.getResultBuffer(), 0, s.getResultLength()); */
 
                                     System.out.print(u);

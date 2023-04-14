@@ -1,5 +1,8 @@
-package MainApp;
+package com.MainApp;
 
+import com.DataSet.ReadData;
+import com.algorithms.IncidenceMatrix;
+import com.preprocessing.Preprocessing;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class IndexingScene_Controller implements Initializable {
 
@@ -109,13 +110,41 @@ public class IndexingScene_Controller implements Initializable {
             indixingData.put("Tokenization", "0");
     }
 
-    public void onDoneButtonClicked(ActionEvent e) throws IOException {
+    public void onDoneButtonClicked(ActionEvent e) throws Exception {
 
         /**
          * FOCUS HERE Tawfik ==>
          *
          * you need to take indixingData only and do indixing with it here
          */
+
+        try{
+            String [] data= ReadData.readDocuments("D:\\AFinalYear\\IR\\Information-Retrieval-Project\\archive\\CISI.QRY");
+
+            ArrayList<List<String>> cleanedData=new ArrayList<>();
+            int xx=10;
+            for(var d:data){
+                xx--;
+                if(xx==0){
+                    break;
+                }
+                cleanedData.add(Preprocessing.preprocess(d,indixingData.get("StopWords").equals("1"),
+                        indixingData.get("Normalization").equals("1"),
+                        indixingData.get("Steaming").equals("1"),
+                        indixingData.get("Lemetization").equals("1")));
+            }
+
+            if(indixingData.get("IndexWay")=="Incidence-matrix") {
+                var matrix = IncidenceMatrix.createMatrix(cleanedData);
+                matrix.forEach((x, list) -> {
+                    System.out.print(x + "  ");
+                    list.forEach(z -> System.out.print(z + " "));
+                    System.out.println();
+                });
+            }
+        }catch (Exception ex){
+            System.out.println(ex);
+        }
 
         fxmlLoader = new FXMLLoader(mainApp.class.getResource("SearchingScene.fxml"));
         scene = new Scene(fxmlLoader.load());

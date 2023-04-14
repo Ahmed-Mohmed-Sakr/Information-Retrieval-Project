@@ -1,5 +1,6 @@
-package MainApp;
+package com.MainApp;
 
+import com.algorithms.IncidenceMatrix;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 public class SearchingScene_Controller {
 
@@ -45,6 +48,17 @@ public class SearchingScene_Controller {
          * -you will Write
          * SearchResult = YOUR_Search_Result.
          */
+
+        Map<String, List<Boolean>> matrix= IncidenceMatrix.glopalMatrix;
+
+        if(matrix.get(SearchText)!=null){
+            List<Boolean> list=matrix.get(SearchText);
+            for(int i=0;i<list.size();i++){
+                if(list.get(i)==true){
+                    SearchResult+="data found in doucument number"+(i+1)+"\n";
+                }
+            }
+        }
 
         if (SearchResult.isEmpty())
             SearchResult = "NO DATA TO SHOW :(";
