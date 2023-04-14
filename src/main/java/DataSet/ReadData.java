@@ -24,9 +24,40 @@ import java.util.Scanner;
 public class ReadData {
     
     
-    public static void main(String[] args) throws FileNotFoundException {
-        String[] res = readTokensFromFile( "/home/yousef/level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/CISI.QRY" );
-        System.out.println(res.length);
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+        String[] res = readDocuments( "/home/yousef/level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/CISI.QRY" );
+        System.out.println(res[1]);
+    }
+    
+    public static String[] readDocuments(String filename) throws IOException {
+        ArrayList<String> documents = new ArrayList<String>();
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        String line = reader.readLine();
+        StringBuilder documentBuilder = new StringBuilder();
+        while (line != null) {
+            if (line.startsWith(".I")) {
+                // Start of a new document, add the previous one to the list
+                if (documentBuilder.length() > 0) {
+                    documents.add(documentBuilder.toString().trim());
+                    documentBuilder.setLength(0);
+                }
+            } else if (line.startsWith(".W")) {
+                // Start of the document content
+                documentBuilder.append(line.substring(2)); // Add the content without the ".W"
+                documentBuilder.append("\n"); // Add a newline
+            } else {
+                // Add a regular line to the document content
+                documentBuilder.append(line);
+                documentBuilder.append("\n"); // Add a newline
+            }
+            line = reader.readLine();
+        }
+        // Add the last document to the list
+        if (documentBuilder.length() > 0) {
+            documents.add(documentBuilder.toString().trim());
+        }
+        reader.close();
+        return documents.toArray(new String[documents.size()]);
     }
     
     public static String[] readTokensFromFile(String filename) throws FileNotFoundException {
