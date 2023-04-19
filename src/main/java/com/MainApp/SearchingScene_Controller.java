@@ -5,18 +5,23 @@ import com.algorithms.IndexesFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
-public class SearchingScene_Controller {
+public class SearchingScene_Controller implements Initializable {
 
     private Stage stage;
     private Scene scene;
@@ -28,10 +33,40 @@ public class SearchingScene_Controller {
     private TextArea searchOutputField;
     @FXML
     private Button SearchButton;
+    @FXML
+    private ChoiceBox<String> chooseIndexToSearch;
 
+    private String[] idixingWayes = {"Lucene", "Term-document",
+            "Incidence-matrix", "Inverted-index", "Positional-index", "Bi-word-index"};
+
+
+    /**
+     * index it search in form gui
+     *
+     */
     // text that we need to search for.
     String SearchText = "";
     String SearchResult = "";
+    String IndexWay = "Lucene";
+//    Map<String, String> searchingData = new HashMap<String, String>() {
+//        {
+//            put("IndexWay","Lucene");
+//        }
+//    };
+
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        chooseIndexToSearch.getItems().addAll(idixingWayes);
+        chooseIndexToSearch.setOnAction(this::getIndexWay);
+    }
+    public void getIndexWay(ActionEvent e) {
+        String mySelectedIndexWay = chooseIndexToSearch.getValue();
+
+        if(mySelectedIndexWay.isEmpty())
+            return;
+        IndexWay = mySelectedIndexWay;
+        System.out.println(mySelectedIndexWay);
+    }
+
 
     public void onSearchButtonClicked(ActionEvent e) {
         // here we get string that we need to search for
@@ -76,4 +111,5 @@ public class SearchingScene_Controller {
         stage.setScene(scene);
         stage.show();
     }
+
 }
