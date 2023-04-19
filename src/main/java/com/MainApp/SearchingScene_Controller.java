@@ -1,6 +1,7 @@
 package com.MainApp;
 
 import com.algorithms.IncidenceMatrix;
+import com.algorithms.IndexesFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,7 +50,7 @@ public class SearchingScene_Controller {
          * SearchResult = YOUR_Search_Result.
          */
 
-        Map<String, List<Boolean>> matrix= IncidenceMatrix.glopalMatrix;
+        Map<String, List<Boolean>> matrix= IndexesFactory.getIncidenceMatrix();
 
         if(matrix.get(SearchText)!=null){
             List<Boolean> list=matrix.get(SearchText);

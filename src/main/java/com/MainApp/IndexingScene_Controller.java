@@ -2,6 +2,7 @@ package com.MainApp;
 
 import com.DataSet.ReadData;
 import com.algorithms.IncidenceMatrix;
+import com.algorithms.IndexesFactory;
 import com.preprocessing.Preprocessing;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,7 +38,7 @@ public class IndexingScene_Controller implements Initializable {
     private ChoiceBox<String> chooseIndex;
 
     private String[] idixingWayes = {"Lucene", "Term-document",
-            "Incidence-matrix", "Inverted-matrix", "Positional-index", "Bi-word-index"};
+            "Incidence-matrix", "Inverted-index", "Positional-index", "Bi-word-index"};
 
     /**
      * Tawfik: Just take that data from that file :) (indixingData)
@@ -135,8 +136,15 @@ public class IndexingScene_Controller implements Initializable {
             }
 
             if(indixingData.get("IndexWay")=="Incidence-matrix") {
-                var matrix = IncidenceMatrix.createMatrix(cleanedData);
+                var matrix = IndexesFactory.setIncidenceMatrix(cleanedData);
                 matrix.forEach((x, list) -> {
+                    System.out.print(x + "  ");
+                    list.forEach(z -> System.out.print(z + " "));
+                    System.out.println();
+                });
+            }else if(indixingData.get("IndexWay")=="Inverted-index"){
+                var matrix=IndexesFactory.setInvertedIndex(cleanedData);
+                matrix.forEach((x,list)->{
                     System.out.print(x + "  ");
                     list.forEach(z -> System.out.print(z + " "));
                     System.out.println();
