@@ -87,13 +87,19 @@ public class SearchingScene_Controller implements Initializable {
 
         Map<String, List<Boolean>> matrix= IndexesFactory.getIncidenceMatrix();
 
-        if(matrix.get(SearchText)!=null){
-            List<Boolean> list=matrix.get(SearchText);
-            for(int i=0;i<list.size();i++){
-                if(list.get(i)==true){
-                    SearchResult+="data found in doucument number"+(i+1)+"\n";
+        try {
+            if (matrix.get(SearchText) != null) {
+                List<Boolean> list = matrix.get(SearchText);
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i) == true) {
+                        SearchResult += "data found in doucument number" + (i + 1) + "\n";
+                    }
                 }
             }
+        } catch (Exception exception) {
+            System.out.println("error in fetching data: \n"+exception);
+
+            SearchResult = "Error in Showing Data :(";
         }
 
         if (SearchResult.isEmpty())
