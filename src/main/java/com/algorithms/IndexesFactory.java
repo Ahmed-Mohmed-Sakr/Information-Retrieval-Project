@@ -12,7 +12,7 @@ public class IndexesFactory {
         if(incidenceMatrix !=null)
             return incidenceMatrix;
         try {
-            incidenceMatrix = IndexesRepository.readIncidenceMatrixFromFile("D:\\AFinalYear\\IR\\Information-Retrieval-Project\\archive\\IncidenceMatrix.txt");
+            incidenceMatrix = IndexesRepository.readIncidenceMatrixFromFile("D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\archive\\IncidenceMatrix.txt");
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -23,7 +23,7 @@ public class IndexesFactory {
     public static Map<String ,List<Boolean>> setIncidenceMatrix(List<List<String>>documents){
         incidenceMatrix=IncidenceMatrix.createMatrix(documents);
         try {
-            IndexesRepository.writeIncidenceMatrixToFile(incidenceMatrix, "D:\\AFinalYear\\IR\\Information-Retrieval-Project\\archive\\IncidenceMatrix.txt");
+            IndexesRepository.writeIncidenceMatrixToFile(incidenceMatrix, "D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\archive\\IncidenceMatrix.txt");
         }catch (Exception ex){
             System.out.println(ex);
         }
@@ -33,7 +33,7 @@ public class IndexesFactory {
         if(invertedIndex !=null)
             return invertedIndex;
         try {
-            invertedIndex = IndexesRepository.readInvertedIndexFromFile("D:\\AFinalYear\\IR\\Information-Retrieval-Project\\archive\\InvertedIndex.txt");
+            invertedIndex = IndexesRepository.readInvertedIndexFromFile("D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\archive\\InvertedIndex.txt");
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -43,7 +43,7 @@ public class IndexesFactory {
     public static Map<String, List<Integer>> setInvertedIndex(List<List<String>>documents){
         invertedIndex=InvertedIndex.createInvertedIndex(documents);
         try{
-            IndexesRepository.writeInvertedIndexToFile(invertedIndex,"D:\\AFinalYear\\IR\\Information-Retrieval-Project\\archive\\InvertedIndex.txt");
+            IndexesRepository.writeInvertedIndexToFile(invertedIndex,"D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\archive\\InvertedIndex.txt");
         }catch (Exception ex){
             System.out.println(ex);
         }

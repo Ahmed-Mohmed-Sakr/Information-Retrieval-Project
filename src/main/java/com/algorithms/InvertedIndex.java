@@ -4,8 +4,6 @@ import java.io.*;
 import java.util.*;
 
 public class InvertedIndex {
-
-
     protected static Map<String, List<Integer>> createInvertedIndex(List<List<String>> documents){
         Map<String,List<Integer>> invertedIndex=new TreeMap<>();
         int i=0;

@@ -2,7 +2,6 @@ package com.test;
 
 import com.DataSet.ReadData;
 import com.algorithms.IncidenceMatrix;
-import com.algorithms.IndexesFactory;
 import com.preprocessing.Preprocessing;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class Main {
             cleanedData.add(Preprocessing.preprocess(d,true,true,true,true));
         }
 
-        var matrix= IndexesFactory.setIncidenceMatrix(cleanedData);
+        var matrix= IncidenceMatrix.createMatrix(cleanedData);
         matrix.forEach((x,list)->{
             System.out.print(x+"  ");
             list.forEach(z-> System.out.print(z+" "));
