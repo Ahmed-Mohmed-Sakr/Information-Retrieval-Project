@@ -12,7 +12,7 @@ public class IndexesFactory {
         if(incidenceMatrix !=null)
             return incidenceMatrix;
         try {
-            incidenceMatrix = IndexesRepository.readIncidenceMatrixFromFile("D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\archive\\IncidenceMatrix.txt");
+            incidenceMatrix = IndexesRepository.readIncidenceMatrixFromFile("/home/yousef/level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/IncidenceMatrix.txt");
         } catch (Exception ex) {
             System.out.println(ex);
         }
