@@ -1,5 +1,6 @@
 package com.algorithms;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,34 +18,42 @@ import org.apache.lucene.util.Version;
 public class Lucene_Indexer {
 
 public static void Indexer() throws IOException{
+    String cisiPath = "D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\dataSetLucene\\CISI.ALL";
+    String indexDir = "indexDir";
 
-    Directory indexDirct = FSDirectory.open(new File("indexDir"));
-    boolean createNewIndex = true;
-    IndexWriterConfig analyzerConfig =
-            new IndexWriterConfig(Version.LUCENE_42, new SimpleAnalyzer(Version.LUCENE_42));
-    analyzerConfig.setOpenMode(createNewIndex ? IndexWriterConfig.OpenMode.CREATE : IndexWriterConfig.OpenMode.APPEND);
-
+    Directory indexDirct = FSDirectory.open(new File(indexDir));
+    IndexWriterConfig analyzerConfig = new IndexWriterConfig(Version.LUCENE_42, new SimpleAnalyzer(Version.LUCENE_42));
+    analyzerConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
     IndexWriter writer = new IndexWriter(indexDirct, analyzerConfig);
-    String dataDir = "D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\Information-Retrieval-Project-Data-set\\build\\classes\\information\\retrieval\\project\\data\\set"; // Index *.txt files from this directory
-    File[] files = new File(dataDir).listFiles();
 
-    for (File f: files) {   // for each file in the directory
-        if (!f.isDirectory() && !f.isHidden() && f.exists() && f.canRead()){
-            System.out.println("Indexing " + f.getCanonicalPath());
-            Document doc = new Document();
-            doc.add(new Field("content", new FileReader(f)));
-
-            doc.add(new Field("filename", f.getName(),
-                    Field.Store.YES, Field.Index.NOT_ANALYZED));
-
-            doc.add(new Field("fullpath", f.getCanonicalPath(),
-                    Field.Store.YES, Field.Index.NOT_ANALYZED));
-
-            writer.addDocument(doc);
+    File cisiFile = new File(cisiPath);
+    BufferedReader reader = new BufferedReader(new FileReader(cisiFile));
+    String line;
+    Document doc = null;
+    while ((line = reader.readLine()) != null) {
+        if (line.startsWith(".I")) {
+            if (doc != null) {
+                writer.addDocument(doc);
+            }
+            doc = new Document();
+            String id = line.substring(3).trim();
+            doc.add(new Field("id", id, Field.Store.YES, Field.Index.NOT_ANALYZED));
+        } else if (line.startsWith(".T")) {
+            String title = reader.readLine().trim();
+            doc.add(new Field("title", title, Field.Store.YES, Field.Index.ANALYZED));
+        } else if (line.startsWith(".W")) {
+            String content = reader.readLine().trim();
+            doc.add(new Field("content", content, Field.Store.YES, Field.Index.ANALYZED));
+        }else if (line.startsWith(".A")) {
+            String author = reader.readLine().trim();
+            doc.add(new Field("author", author, Field.Store.YES, Field.Index.ANALYZED));
         }
     }
+
+    writer.addDocument(doc);
     System.out.println("# of Docs indexed = " + writer.numDocs());
     System.out.println("Lucene Index Built Successfully.");
     writer.close();
+    reader.close();
 }
 }

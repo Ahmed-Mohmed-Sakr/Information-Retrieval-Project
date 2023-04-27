@@ -39,17 +39,14 @@ public class ReadData {
                     documentBuilder.setLength(0);
                 }
             } else if (line.startsWith(".W")) {
-                // Start of the document content
-                documentBuilder.append(line.substring(2)); // Add the content without the ".W"
-                documentBuilder.append("\n"); // Add a newline
+                documentBuilder.append(line.substring(2));
+                documentBuilder.append("\n");
             } else {
-                // Add a regular line to the document content
                 documentBuilder.append(line);
-                documentBuilder.append("\n"); // Add a newline
+                documentBuilder.append("\n");
             }
             line = reader.readLine();
         }
-        // Add the last document to the list
         if (documentBuilder.length() > 0) {
             documents.add(documentBuilder.toString().trim());
         }
@@ -58,36 +55,34 @@ public class ReadData {
     }
 
     public static String[] readTokensFromFile(String filename) throws FileNotFoundException {
-        // Open the file for reading
+
         File file = new File(filename);
         Scanner scanner = new Scanner(file);
 
-        // Create an array to hold the tokens
+
         List<String> tokens = new ArrayList<String>();
 
-        // Loop through each line of the file
+
         while (scanner.hasNextLine()) {
-            // Read the line and split it into tokens
+
             String line = scanner.nextLine();
             String[] lineTokens = line.split("\\s+");
 
-            // Add each token to the array
+
             for (String token : lineTokens) {
                 tokens.add(token);
             }
         }
 
-        // Close the scanner and return the array of tokens
+
         scanner.close();
         return tokens.toArray(new String[tokens.size()]);
     }
 
     public static String[][] readCisiRelFile(String fileName) {
         try {
-            // Open the file for reading
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
 
-            // Read the contents of the file into a string
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -97,7 +92,7 @@ public class ReadData {
             reader.close();
             String contents = sb.toString();
 
-            // Split the contents into lines and then into words
+
             String[] lines = contents.split("\n");
             String[][] documents = new String[lines.length][];
             for (int i = 0; i < lines.length; i++) {
@@ -110,7 +105,6 @@ public class ReadData {
 
             return documents;
         } catch (IOException e) {
-            // Handle any errors that might occur
             e.printStackTrace();
             return null;
         }

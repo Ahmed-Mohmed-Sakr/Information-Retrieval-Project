@@ -18,10 +18,7 @@ import org.apache.lucene.queryparser.classic.ParseException;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SearchingScene_Controller implements Initializable {
 
@@ -105,9 +102,13 @@ public class SearchingScene_Controller implements Initializable {
             }
         }else if(IndexWay.equals("Lucene")){
             try {
-             int hits =   Lucene_Searcher.searcher(SearchText);
-             SearchResult = "Found " + hits +
-                     " document(s) that matched query '" + SearchText + "'";
+                ArrayList<Integer> idHits = Lucene_Searcher.searcher(SearchText);
+                SearchResult = "Found " + idHits.size() +
+                        " document(s) that matched query '" + SearchText + "':";
+                for (var id:idHits) {
+                    SearchResult+=("\n"+"docID :"+String.valueOf(id)) ;
+                }
+
             } catch (IOException | ParseException ex) {
                 throw new RuntimeException(ex);
             }
