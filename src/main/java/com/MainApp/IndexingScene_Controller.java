@@ -2,6 +2,7 @@ package com.MainApp;
 
 import com.DataSet.ReadData;
 import com.algorithms.IncidenceMatrix;
+import com.algorithms.IndexesFactory;
 import com.algorithms.Lucene_Indexer;
 import com.preprocessing.Preprocessing;
 import javafx.event.ActionEvent;
@@ -113,22 +114,19 @@ public class IndexingScene_Controller implements Initializable {
 
     public void onDoneButtonClicked(ActionEvent e) throws Exception {
 
-        /**
-         * FOCUS HERE Tawfik ==>
-         *
-         * you need to take indixingData only and do indixing with it here
-         */
-
         try{
-            String [] data= ReadData.readDocuments("/home/yousef/level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/CISI.QRY");
+            String []data= ReadData.readDocuments("D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\archive\\CISI.ALL");
 
             ArrayList<List<String>> cleanedData=new ArrayList<>();
-
+        int z1 =0;
             for(var d:data){
+                if(z1==10)
+                    break;
                 cleanedData.add(Preprocessing.preprocess(d,indixingData.get("StopWords").equals("1"),
                         indixingData.get("Normalization").equals("1"),
                         indixingData.get("Steaming").equals("1"),
                         indixingData.get("Lemetization").equals("1")));
+                z1++;
             }
 
             if(indixingData.get("IndexWay")=="Incidence-matrix") {
@@ -140,6 +138,13 @@ public class IndexingScene_Controller implements Initializable {
                 });
             }else if(indixingData.get("IndexWay")=="Lucene"){
                 Lucene_Indexer.Indexer();
+            }else if(indixingData.get("IndexWay")=="Inverted-index"){
+                var matrix= IndexesFactory.setInvertedIndex(cleanedData);
+                matrix.forEach((x,list)->{
+                    System.out.print(x + "  ");
+                    list.forEach(z -> System.out.print(z + " "));
+                    System.out.println();
+                });
             }
         }catch (Exception ex){
             System.out.println(ex);

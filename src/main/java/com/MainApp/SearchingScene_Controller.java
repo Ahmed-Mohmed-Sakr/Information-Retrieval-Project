@@ -38,19 +38,10 @@ public class SearchingScene_Controller implements Initializable {
     private String[] idixingWayes = {"Lucene", "Term-document",
             "Incidence-matrix", "Inverted-index", "Positional-index", "Bi-word-index"};
 
-
-    /**
-     * index it search in form gui
-     */
     // text that we need to search for.
     String SearchText = "";
     String SearchResult = "";
     String IndexWay = "Lucene";
-    //  Map<String, String> searchingData = new HashMap<String, String>() {
-    //      {
-    //          put("IndexWay","Lucene");
-    //      }
-    //  };
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chooseIndexToSearch.getItems().addAll(idixingWayes);
@@ -83,6 +74,23 @@ public class SearchingScene_Controller implements Initializable {
         return ans;
     }
 
+    public List<Integer> SearchInverted(String Token) {
+
+        List<Integer> ans = new ArrayList<>();
+        Map<String, List<Integer>> matrix = IndexesFactory.getInvertedIndex();
+        if (matrix.get(Token) != null) {
+            List<Integer> list = matrix.get(Token);
+
+            for (int i = 0; i < list.size(); i++) {
+
+                    ans.add(list.get(i));
+
+            }
+        }
+        return ans;
+    }
+
+
     public List<String> Tokens() {
         List<String> ret = new ArrayList<>();
         String cur = "";
@@ -100,14 +108,9 @@ public class SearchingScene_Controller implements Initializable {
         return ret;
     }
 
+
     public ArrayList<Integer> SearchLucene(String Token) throws IOException, ParseException {
         ArrayList<Integer> ret = Lucene_Searcher.searcher(Token);
-//        SearchResult = "Found " + idHits.size() +
-//                " document(s) that matched query '" + SearchText + "':";
-//        for (var id:idHits) {
-//            SearchResult+=("\n"+"docID :"+String.valueOf(id)) ;
-//        }
-
         return ret;
     }
 
@@ -119,7 +122,6 @@ public class SearchingScene_Controller implements Initializable {
         if (SearchText.isEmpty()) {
             return;
         }
-
 
         if (IndexWay.equals("Incidence-matrix")) {
             Map<String, List<Boolean>> matrix = IndexesFactory.getIncidenceMatrix();
@@ -185,7 +187,6 @@ public class SearchingScene_Controller implements Initializable {
 
             } catch (Exception exception) {
                 System.out.println("error in fetching data: \n" + exception);
-
                 SearchResult = "Error in Showing Data :(";
             }
         } else if (IndexWay.equals("Lucene")) {
@@ -239,6 +240,72 @@ public class SearchingScene_Controller implements Initializable {
 
             } catch (IOException | ParseException ex) {
                 throw new RuntimeException(ex);
+            }
+        }else if (IndexWay.equals("Inverted-index")) {
+            //
+            Map<String, List<Integer>> matrix = IndexesFactory.getInvertedIndex();
+            boolean AND = false, OR = false;
+            List<String> needs = new ArrayList<>();
+
+            for (int i = 0; i < SearchText.length(); i++) {
+                if (SearchText.charAt(i) == '&')
+                    AND = true;
+
+                if (SearchText.charAt(i) == '|')
+                    OR = true;
+            }
+
+            try {
+                var words = Tokens();
+
+                System.out.println("words in Token equal = ");
+                for (int i = 0; i < words.size(); i++) {
+                    System.out.println(words.get(i));
+                }
+                System.out.println("-------------------------------------");
+                List<Integer> ans = new ArrayList<>();
+
+                if (AND == false && OR == false) {
+                    var ret = SearchInverted(words.get(0));
+                    ans = ret;
+
+                } else if (AND == true) {
+
+                    // AND Operation ;
+                    var ret1 = SearchInverted(words.get(0));
+                    var ret2 = SearchInverted(words.get(1));
+
+
+                    for (int i = 0; i < ret1.size(); i++) {
+                        for (int j = 0; j < ret2.size(); j++) {
+                            if (ret1.get(i) == ret2.get(j)) {
+                                ans.add(ret1.get(i));
+                                break;
+                            }
+                        }
+                    }
+
+
+                } else {
+                    // OR Operation ;
+                    var ret1 = SearchInverted(words.get(0));
+                    var ret2 = SearchInverted(words.get(1));
+
+                    ans = new ArrayList<>(ret1);
+                    for (Integer element : ret2) { // Iterate over ret2
+                        if (!ans.contains(element)) { // Check if element is not already present in the mergedList
+                            ans.add(element); // Add element to the mergedList
+                        }
+                    }
+                }
+
+                for (int i = 0; i < ans.size(); i++) {
+                    SearchResult += "data found in doucument number --> " + (ans.get(i)) + "\n";
+                }
+
+            } catch (Exception exception) {
+                System.out.println("error in fetching data: \n" + exception);
+                SearchResult = "Error in Showing Data :(";
             }
         }
         if (SearchResult.isEmpty())
