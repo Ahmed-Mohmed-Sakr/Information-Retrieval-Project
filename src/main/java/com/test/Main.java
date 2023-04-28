@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String []args) throws Exception {
-        String [] data= ReadData.readDocuments("D:\\AFinalYear\\IR\\Information-Retrieval-Project\\archive\\CISI.QRY");
+        String [] data= ReadData.readDocuments("/home/yousef/level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/CISI.QRY");
 
         ArrayList<List<String>> cleanedData=new ArrayList<>();
         int xx=10;

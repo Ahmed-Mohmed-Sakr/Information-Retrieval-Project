@@ -28,11 +28,11 @@ public class StemLemmatize {
             tokens[count++]=inputToken;
         }
 
-        InputStream inputStreamPOSTagger = new FileInputStream("D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\archive\\en-pos-maxent.bin");
+        InputStream inputStreamPOSTagger = new FileInputStream("/home/yousef/level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/en-pos-maxent.bin");
         POSModel posModel = new POSModel(inputStreamPOSTagger);
         POSTaggerME posTagger = new POSTaggerME(posModel);
         String tags[] = posTagger.tag(tokens);
-        InputStream dictLemmatizer = new FileInputStream("D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\archive\\en-lemmatizer.dict");
+        InputStream dictLemmatizer = new FileInputStream("/home/yousef/level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/en-lemmatizer.dict");
         DictionaryLemmatizer lemmatizer = new DictionaryLemmatizer(
                 dictLemmatizer);
         String[] lemmas = lemmatizer.lemmatize(tokens, tags);

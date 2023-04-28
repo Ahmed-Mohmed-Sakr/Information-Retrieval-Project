@@ -120,7 +120,7 @@ public class IndexingScene_Controller implements Initializable {
          */
 
         try{
-            String [] data= ReadData.readDocuments("D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\archive\\CISI.QRY");
+            String [] data= ReadData.readDocuments("/home/yousef/level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/CISI.QRY");
 
             ArrayList<List<String>> cleanedData=new ArrayList<>();
 

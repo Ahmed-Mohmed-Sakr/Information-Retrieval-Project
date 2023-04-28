@@ -18,7 +18,7 @@ import org.apache.lucene.util.Version;
 public class Lucene_Indexer {
 
 public static void Indexer() throws IOException{
-    String cisiPath = "D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\dataSetLucene\\CISI.ALL";
+    String cisiPath = "/home/yousef/level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/CISI.ALL";
     String indexDir = "indexDir";
 
     Directory indexDirct = FSDirectory.open(new File(indexDir));
@@ -31,6 +31,7 @@ public static void Indexer() throws IOException{
     String line;
     Document doc = null;
     while ((line = reader.readLine()) != null) {
+        System.out.println();
         if (line.startsWith(".I")) {
             if (doc != null) {
                 writer.addDocument(doc);
