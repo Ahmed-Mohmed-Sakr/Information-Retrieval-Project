@@ -130,7 +130,7 @@ public class IndexingScene_Controller implements Initializable {
             }
 
             if(indixingData.get("IndexWay")=="Incidence-matrix") {
-                var matrix = IncidenceMatrix.createMatrix(cleanedData);
+                var matrix =  IndexesFactory.setIncidenceMatrix(cleanedData);
                 matrix.forEach((x, list) -> {
                     System.out.print(x + "  ");
                     list.forEach(z -> System.out.print(z + " "));
