@@ -1,30 +1,187 @@
-actual: false, true, false, false, false, false, false, false, false
-automat: true, true, false, true, false, false, false, false, true
-businessman: false, false, false, false, true, false, false, false, false
-byproduct: false, false, false, false, false, false, true, false, false
-datum: false, true, false, false, false, false, false, false, false
-form: false, false, false, false, false, false, true, false, false
-give: false, false, true, false, false, false, false, false, false
-human: false, false, false, false, false, true, false, false, false
-index: false, false, false, false, false, false, false, true, false
-inform: false, true, true, false, true, false, false, true, true
-like: false, false, false, false, true, false, false, false, false
-make: true, false, false, false, false, false, false, false, false
-need: false, false, false, false, true, false, false, false, false
-oppo: false, true, false, false, false, false, false, false, false
-paper: false, false, false, false, false, false, true, false, false
-plan: false, false, false, false, false, false, true, false, false
-present: false, false, false, false, false, false, true, false, false
-problem: true, false, false, false, true, false, false, false, false
-proper: false, false, false, false, true, false, false, false, false
-publish: false, false, false, false, false, false, true, false, false
-refer: false, true, false, false, false, false, false, false, false
-research: false, false, false, false, true, false, false, false, false
-speak: false, false, false, false, false, true, false, false, false
-special: false, false, false, false, true, false, false, false, false
-train: false, false, false, false, true, false, false, false, false
-transform: false, false, false, true, false, false, false, false, false
-usual: true, false, false, false, false, false, false, false, false
-verbal: false, false, false, false, false, true, false, false, false
-via: false, false, false, false, false, true, false, false, false
-we: false, false, false, false, true, false, true, false, false
+abroad: true, false, false, false, false, false, false, false, false, false
+abstract: false, false, false, false, false, true, false, false, false, false
+abstractor: false, false, false, false, false, true, false, false, false, false
+act: false, true, false, false, false, false, false, false, false, false
+affect: false, false, false, false, false, false, false, false, true, false
+along: false, false, true, false, false, false, false, false, false, false
+also: false, true, false, true, false, false, false, false, false, false
+appear: true, false, false, false, false, false, false, false, false, false
+appendix: false, false, false, false, false, true, false, false, false, false
+apprenticeship: false, false, false, false, false, false, false, true, false, false
+apt: false, false, false, false, false, false, false, true, false, false
+architect: false, false, false, false, false, false, true, false, false, false
+aspect: false, true, false, true, false, true, false, false, false, false
+attempt: true, false, false, false, false, false, true, false, false, false
+avail: false, false, false, false, false, true, false, false, false, false
+avoid: false, false, false, false, false, false, true, false, false, false
+base: false, false, false, false, false, false, false, false, false, true
+basic: false, false, false, true, false, false, false, false, true, false
+book: false, false, false, false, false, false, true, true, false, false
+brief: false, false, false, false, false, true, false, false, false, false
+brow: false, false, false, false, false, false, false, false, true, false
+brown: false, false, false, false, false, false, true, false, false, false
+build: false, false, false, false, false, false, true, true, false, false
+bulk: false, false, false, false, false, false, false, false, false, true
+caus: false, false, false, false, true, false, false, false, false, false
+center: false, false, false, false, false, false, false, false, false, true
+certain: false, false, true, false, false, false, false, false, false, false
+channel: false, true, false, false, false, false, false, false, false, false
+chapter: false, false, false, false, false, true, false, false, false, false
+citizen: false, false, false, false, false, false, false, false, true, false
+collect: false, true, false, false, false, false, false, true, false, true
+compar: false, false, false, false, false, false, false, false, true, false
+complex: false, false, false, false, true, false, false, false, false, false
+concept: false, false, false, false, false, true, false, false, true, false
+confirm: false, false, false, false, false, false, false, false, true, false
+consider: false, false, false, false, false, false, false, false, true, true
+contain: false, false, true, false, false, true, false, false, false, false
+critic: false, false, false, false, false, false, false, true, false, false
+cross: false, false, false, false, false, false, false, true, false, false
+current: false, true, false, false, false, false, false, false, true, false
+deal: false, false, true, false, false, false, false, true, false, false
+decad: false, false, false, false, true, false, false, false, false, false
+depend: false, false, false, false, false, false, false, false, false, true
+desk: false, true, false, false, false, false, false, false, false, false
+develop: false, false, false, false, true, true, false, true, false, true
+direct: false, false, false, false, false, false, false, false, true, false
+discuss: false, false, true, false, false, true, false, false, false, false
+do: false, false, false, false, false, false, true, false, false, false
+document: false, true, false, false, false, false, false, false, false, false
+edit: true, false, false, false, false, true, false, false, false, false
+educ: false, false, false, false, true, false, false, false, false, false
+eighteenth: true, false, false, false, false, false, false, false, false, false
+either: false, false, false, false, true, false, false, false, false, false
+el: false, false, true, false, false, false, false, false, false, false
+electron: false, false, false, false, true, false, false, false, false, false
+enter: false, false, true, false, false, false, false, false, false, false
+establish: false, false, false, true, false, false, false, false, true, false
+even: false, true, false, false, false, false, false, false, false, false
+except: false, false, false, false, false, false, true, false, false, false
+exist: false, false, false, false, false, false, true, false, false, false
+expend: false, false, false, false, false, true, false, false, false, false
+extract: false, false, false, false, false, true, false, false, false, false
+face: false, false, false, false, false, false, true, false, false, false
+fall: false, false, false, false, false, false, false, true, false, false
+familiar: false, false, true, false, false, false, false, false, false, false
+feel: false, false, false, false, false, false, false, true, false, false
+field: false, false, false, false, true, false, false, false, false, false
+final: false, false, false, true, false, false, false, false, false, false
+find: false, false, false, false, false, true, false, false, true, false
+first: true, false, false, false, true, false, false, false, false, false
+follow: false, false, false, false, false, false, false, false, true, true
+full: true, false, false, false, false, false, false, false, false, false
+good: false, false, false, false, false, false, false, true, false, false
+great: false, false, true, false, false, true, false, false, false, false
+handbook: false, true, false, false, false, false, false, false, false, false
+hold: false, false, false, false, false, false, false, false, true, false
+impress: false, false, false, false, false, false, false, true, false, false
+index: false, false, false, false, false, true, false, false, false, false
+inform: false, true, true, true, false, true, false, false, false, false
+insist: false, false, false, false, false, false, false, true, false, false
+instrument: false, false, false, false, false, false, false, false, true, false
+interest: false, false, false, false, false, false, false, true, false, false
+journal: false, false, false, false, false, false, false, false, false, true
+keep: false, false, false, false, false, false, false, true, false, false
+kingdom: false, true, false, false, false, false, false, false, false, false
+know: false, false, false, false, false, true, false, false, false, false
+last: false, false, false, false, true, false, false, false, false, false
+leave: false, false, false, false, false, false, false, false, true, false
+librarian: false, false, false, false, false, false, true, true, false, false
+little: false, true, false, false, false, false, false, false, true, false
+long: true, false, false, false, false, false, false, false, false, false
+main: false, false, false, false, true, false, false, false, false, false
+major: false, true, false, false, false, false, false, false, false, true
+make: false, true, false, true, true, false, true, false, false, true
+man: false, false, false, false, true, false, false, false, false, false
+manifest: false, false, false, false, false, false, false, true, false, false
+mason: false, false, false, false, false, false, true, false, false, false
+mean: false, false, false, false, false, false, false, false, true, false
+model: false, false, false, false, true, false, false, false, false, false
+much: false, false, false, false, false, true, false, false, false, false
+must: false, false, false, false, false, false, false, true, false, false
+nation: false, false, false, false, false, false, false, false, false, true
+need: false, false, false, true, false, true, false, true, false, false
+never: true, false, false, false, false, false, false, false, false, false
+new: false, false, false, true, false, false, true, false, false, false
+nine: false, false, false, true, false, false, false, false, false, false
+object: false, false, false, true, false, false, false, false, false, false
+obtain: false, false, true, false, false, false, false, false, false, false
+on: false, true, false, false, true, true, false, true, false, false
+open: false, false, false, false, false, false, false, false, true, false
+oral: false, true, false, false, false, false, false, false, false, false
+organ: false, true, true, false, false, false, false, false, false, false
+overlook: false, false, false, false, false, false, false, true, false, false
+past: false, false, false, false, false, true, false, false, false, false
+pattern: false, true, false, false, false, false, false, false, false, false
+percent: false, false, false, false, false, false, false, false, false, true
+period: false, true, false, false, false, false, false, false, false, true
+person: false, true, false, false, false, false, false, false, false, false
+plan: false, false, false, false, false, false, true, false, false, true
+pleasant: false, false, false, false, false, true, false, false, false, false
+polit: false, false, false, false, false, false, false, false, true, false
+present: true, false, false, false, false, false, true, false, false, false
+problem: false, false, false, false, false, false, true, false, true, false
+product: false, false, false, false, false, true, false, false, false, false
+profession: false, false, false, false, true, true, false, false, true, false
+professor: false, false, false, false, false, false, false, true, false, false
+program: false, false, false, false, false, true, false, false, false, false
+public: false, false, false, false, false, true, false, false, false, false
+publish: true, false, false, false, false, false, false, false, false, false
+rapid: false, false, false, false, true, false, false, false, false, true
+rare: false, true, false, false, false, false, false, false, false, false
+rather: false, true, false, false, false, false, false, false, false, false
+read: false, false, false, false, false, false, false, true, false, false
+reader: false, false, false, false, false, false, false, false, true, false
+recent: false, false, false, false, true, false, false, false, false, false
+recommend: false, false, false, false, false, false, false, false, false, true
+regular: false, true, false, false, false, false, false, false, false, false
+rel: false, false, false, false, false, false, false, false, true, false
+remain: false, false, false, true, false, false, false, false, false, false
+report: false, false, false, true, false, false, false, false, false, false
+research: false, false, false, true, true, true, false, true, true, false
+resist: false, false, false, false, false, false, false, false, true, false
+restrict: false, true, false, false, false, false, false, false, false, true
+scholar: false, false, false, false, false, false, false, false, true, false
+section: false, false, false, false, false, true, false, false, false, false
+segment: false, false, false, false, false, true, false, false, false, false
+select: false, false, false, false, false, true, false, false, false, false
+sen: false, false, true, false, false, false, false, false, false, false
+slater: false, true, false, false, false, false, false, false, false, false
+slogan: false, false, true, false, false, false, false, false, false, false
+social: false, false, false, false, false, false, false, false, true, false
+sophist: false, false, false, false, true, false, false, false, false, false
+spite: true, false, false, false, false, false, false, false, false, false
+spread: false, false, false, false, true, false, false, false, false, false
+spur: true, false, false, false, false, false, false, false, false, false
+staff: false, false, false, false, false, false, false, true, false, false
+standard: false, false, false, false, false, true, false, false, false, false
+still: false, true, false, false, false, false, false, false, false, false
+store: false, false, false, false, false, true, false, false, false, false
+stress: false, false, false, true, false, false, false, false, false, false
+student: false, false, false, false, false, true, false, false, false, false
+subject: false, false, false, false, false, false, false, false, false, true
+supplement: false, false, false, false, false, true, false, false, false, false
+take: false, true, false, false, false, false, false, false, false, false
+technic: false, true, false, false, false, false, false, false, false, false
+tell: true, false, false, false, false, false, false, false, false, false
+thorough: false, false, false, false, false, false, false, true, false, false
+topic: false, false, false, false, false, true, false, false, false, false
+train: false, false, false, false, true, false, false, false, false, false
+treat: false, false, false, false, false, true, false, false, false, false
+two: false, false, true, false, false, false, false, false, false, false
+understand: false, false, false, false, false, true, false, false, false, false
+unit: false, true, false, false, false, true, false, false, false, false
+upon: false, false, false, false, false, false, false, true, false, false
+visit: false, true, false, false, false, false, false, false, false, false
+we: false, true, false, false, true, true, false, true, true, false
+well: false, false, false, true, false, false, false, true, false, false
+whole: false, true, false, false, false, false, false, false, false, false
+wide: false, true, false, false, true, false, false, false, false, false
+widespread: false, false, false, false, true, false, false, false, false, false
+without: false, false, false, false, false, false, false, false, false, true
+woman: false, false, false, false, true, false, false, false, false, false
+work: false, false, false, false, false, true, false, false, false, false
+worker: false, false, false, false, false, true, false, false, false, false
+write: false, false, true, false, false, true, false, true, false, false
+yale: false, false, false, false, false, false, true, false, false, false
+year: false, false, false, false, true, false, false, false, false, false
