@@ -120,7 +120,7 @@ public class IndexingScene_Controller implements Initializable {
             ArrayList<List<String>> cleanedData=new ArrayList<>();
         int z1 =0;
             for(var d:data){
-                if(z1==10)
+                if(z1==100)
                     break;
                 cleanedData.add(Preprocessing.preprocess(d,indixingData.get("StopWords").equals("1"),
                         indixingData.get("Normalization").equals("1"),
@@ -138,13 +138,15 @@ public class IndexingScene_Controller implements Initializable {
                 });
             }else if(indixingData.get("IndexWay")=="Lucene"){
                 Lucene_Indexer.Indexer();
-            }else if(indixingData.get("IndexWay")=="Inverted-index"){
+            }else if(indixingData.get("IndexWay")=="Inverted-matrix"){
                 var matrix= IndexesFactory.setInvertedIndex(cleanedData);
                 matrix.forEach((x,list)->{
                     System.out.print(x + "  ");
                     list.forEach(z -> System.out.print(z + " "));
                     System.out.println();
                 });
+            }else if(indixingData.get("IndexWay")=="Positional-index"){
+               var matrix= IndexesFactory.setPositionalIndex(cleanedData);
             }
         }catch (Exception ex){
             System.out.println(ex);

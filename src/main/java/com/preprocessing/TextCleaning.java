@@ -18,7 +18,7 @@ public class TextCleaning {
         if (doc.matches(".*\\w\\..*")) {
             doc = doc.toLowerCase().replaceAll("(\\w)\\.", "$1");
         }
-        String[] tokens = doc.toLowerCase().split("[\\s.;,()/:?]+");
+        String[] tokens = doc.toLowerCase().split("[\\s.;,()/:'?!$*+#^\"]+");
         ArrayList<String> tokenWord = new ArrayList<>(Arrays.asList(tokens));
         return tokenWord;
 

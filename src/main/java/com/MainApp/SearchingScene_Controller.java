@@ -78,6 +78,7 @@ public class SearchingScene_Controller implements Initializable {
 
         List<Integer> ans = new ArrayList<>();
         Map<String, List<Integer>> matrix = IndexesFactory.getInvertedIndex();
+        Map<String, Map<Integer, List<Integer>>> matix= null;
         if (matrix.get(Token) != null) {
             List<Integer> list = matrix.get(Token);
 
@@ -89,7 +90,6 @@ public class SearchingScene_Controller implements Initializable {
         }
         return ans;
     }
-
 
     public List<String> Tokens() {
         List<String> ret = new ArrayList<>();
@@ -117,7 +117,7 @@ public class SearchingScene_Controller implements Initializable {
     public void onSearchButtonClicked(ActionEvent e) {
         // here we get string that we need to search for
         SearchResult = "";
-        SearchText = searchInputField.getText().trim();
+        SearchText = searchInputField.getText().trim().toLowerCase();
 
         if (SearchText.isEmpty()) {
             return;
@@ -300,14 +300,30 @@ public class SearchingScene_Controller implements Initializable {
                 }
 
                 for (int i = 0; i < ans.size(); i++) {
-                    SearchResult += "data found in doucument number --> " + (ans.get(i)) + "\n";
+                    SearchResult += "data found in doucument number --> " + (ans.get(i)+1) + "\n";
                 }
 
             } catch (Exception exception) {
                 System.out.println("error in fetching data: \n" + exception);
                 SearchResult = "Error in Showing Data :(";
             }
+        }else if(IndexWay.equals("Positional-index")){
+            var matrix= IndexesFactory.getPositionalIndex(); // (get posResult) term:word docId: 1 [pos1, pos2]
+//            for (Map.Entry<String, Map<Integer, List<Integer>>> entry : matrix.entrySet()) {
+//                String key = entry.getKey();
+//                Map<Integer, List<Integer>> innerMap = entry.getValue();
+//                System.out.print(key + ":");
+//                for (Map.Entry<Integer, List<Integer>> innerEntry : innerMap.entrySet()) {
+//                    Integer innerKey = innerEntry.getKey();
+//
+//                    List<Integer> innerList = innerEntry.getValue();
+//                    System.out.print(" " + innerKey + ": " + innerList);
+//                }
+//                System.out.println();
+//            }
+            //implement searchCode Here
         }
+
         if (SearchResult.isEmpty())
             SearchResult = "NO DATA TO SHOW :(";
 
@@ -323,5 +339,4 @@ public class SearchingScene_Controller implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 }

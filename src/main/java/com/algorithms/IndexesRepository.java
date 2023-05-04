@@ -1,10 +1,7 @@
 package com.algorithms;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class IndexesRepository {
 
@@ -79,4 +76,42 @@ public class IndexesRepository {
         }
         return invertedIndex;
     }
+
+    public static void writepositionalIndexFromFile(Map<String, Map<Integer, List<Integer>>> postionalIndex,String filePath) throws IOException {
+        try (FileWriter writer = new FileWriter(filePath)) {
+            for (Map.Entry<String, Map<Integer, List<Integer>>> entry : postionalIndex.entrySet()) {
+                String term = entry.getKey();
+                Map<Integer, List<Integer>> postings = entry.getValue();
+                writer.write(term + ": " + " Freq:"+ postings.size());
+                for (Map.Entry<Integer, List<Integer>> posting : postings.entrySet()) {
+                    int docId = posting.getKey();
+                    List<Integer> positions = posting.getValue();
+                    writer.write("  " + docId + ": " + positions.toString() + " ");
+                }
+                writer.write("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static Map<String, Map<Integer, List<Integer>>> readIndexFromFile(String filePath) throws IOException {
+        Map<String, Map<Integer, List<Integer>>> map = new TreeMap<>();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] tokens = line.split(":\\s+");
+            String term = tokens[0];
+            String[] freqTokens = tokens[1].split("\\s+");
+            int freq = Integer.parseInt(freqTokens[1]);
+            String[] posTokens = tokens[2].trim().split("\\[|\\]|:\\s*");
+            List<Integer> positions = new ArrayList<>();
+            for (int i = 1; i < posTokens.length; i++) {
+                positions.add(Integer.parseInt(posTokens[i]));
+            }
+            int docId = posTokens[0].isEmpty() ? 0 : Integer.parseInt(posTokens[0]);
+            map.computeIfAbsent(term, k -> new TreeMap<>()).put(docId, positions);
+        }
+        reader.close();
+        return map;
+}
 }
