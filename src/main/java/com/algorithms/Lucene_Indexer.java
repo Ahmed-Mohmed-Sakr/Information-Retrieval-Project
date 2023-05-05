@@ -18,7 +18,7 @@ import org.apache.lucene.util.Version;
 public class Lucene_Indexer {
 
 public static void Indexer() throws IOException{
-    String cisiPath = "D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\dataSetLucene\\CISI.ALL";
+    String cisiPath = "/home/yousef/Level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/CISI.ALL";
     String indexDir = "indexDir";
 
     Directory indexDirct = FSDirectory.open(new File(indexDir));
