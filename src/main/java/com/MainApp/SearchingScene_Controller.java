@@ -37,10 +37,10 @@ public class SearchingScene_Controller implements Initializable {
     private CheckBox Normalization;
     @FXML
     private CheckBox Steaming;
-    @FXML
-    private CheckBox StopWords;
-    @FXML
-    private CheckBox Tokenization;
+//    @FXML
+//    private CheckBox StopWords;
+//    @FXML
+//    private CheckBox Tokenization;
 
     private String[] idixingWayes = {"Lucene", "Term-document",
             "Incidence-matrix", "Inverted-index", "Positional-index", "Bi-word-index"};
@@ -50,13 +50,13 @@ public class SearchingScene_Controller implements Initializable {
     String SearchResult = "";
     String IndexWay = "Lucene";
 
-    Map<String, String> SearchingFilters = new HashMap<String, String>() {
+   public static Map<String, String> SearchingFilters = new HashMap<String, String>() {
         {
             put("Lemetization", "0");
             put("Normalization", "0");
             put("Steaming", "0");
-            put("StopWords", "0");
-            put("Tokenization", "0");
+//            put("StopWords", "0");
+//            put("Tokenization", "0");
         }
     };
 
@@ -90,20 +90,20 @@ public class SearchingScene_Controller implements Initializable {
     }
 
     @FXML
-    void onStopWordsChange(ActionEvent event) {
-        if (StopWords.isSelected())
-            SearchingFilters.put("StopWords", "1");
-        else
-            SearchingFilters.put("StopWords", "0");
-    }
-
-    @FXML
-    void onTokenizationChange(ActionEvent event) {
-        if (Tokenization.isSelected())
-            SearchingFilters.put("Tokenization", "1");
-        else
-            SearchingFilters.put("Tokenization", "0");
-    }
+//    void onStopWordsChange(ActionEvent event) {
+//        if (StopWords.isSelected())
+//            SearchingFilters.put("StopWords", "1");
+//        else
+//            SearchingFilters.put("StopWords", "0");
+//    }
+//
+//    @FXML
+//    void onTokenizationChange(ActionEvent event) {
+//        if (Tokenization.isSelected())
+//            SearchingFilters.put("Tokenization", "1");
+//        else
+//            SearchingFilters.put("Tokenization", "0");
+//    }
 
     public void getIndexWay(ActionEvent e) {
         String mySelectedIndexWay = chooseIndexToSearch.getValue();
@@ -119,6 +119,10 @@ public class SearchingScene_Controller implements Initializable {
         // here we get string that we need to search for
         SearchResult = "";
         SearchText = searchInputField.getText().trim().toLowerCase();
+
+        if(SearchingFilters.get("Lemetization").equals("1")) {
+            System.out.println("i am here");
+        }
 
         if (SearchText.isEmpty()) {
             return;
@@ -160,7 +164,7 @@ public class SearchingScene_Controller implements Initializable {
         }
 
          else if(IndexWay.equals("Positional-index")){
-//            var matrix= IndexesFactory.getPositionalIndex(); // (get posResult) term:word docId: 1 [pos1, pos2]
+          var matrix= IndexesFactory.getPositionalIndex(); // (get posResult) term:word docId: 1 [pos1, pos2]
 //
 //            for (Map.Entry<String, Map<Integer, List<Integer>>> entry : matrix.entrySet()) {
 //                String key = entry.getKey();

@@ -29,7 +29,11 @@ public class SearchLucene {
                     OR = true;
             }
 
-            var words = DivieToTokens.Tokens(SearchText);
+            List<String> Words = DivieToTokens.Tokens(SearchText);
+
+            var words = SearchingFilters.FliterHere( Words );
+
+
             if (AND == false && OR == false) {
                 ans = SearchLucene(words.get(0));
             } else if (OR == true) {
@@ -59,6 +63,8 @@ public class SearchLucene {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ParseException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 

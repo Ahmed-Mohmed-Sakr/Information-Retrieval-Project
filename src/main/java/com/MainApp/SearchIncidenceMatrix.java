@@ -44,7 +44,10 @@ public class SearchIncidenceMatrix {
         List<Integer> ans;
         try {
 //                var words = Tokens();
-            var words = DivieToTokens.Tokens(SearchText);
+//            var words = DivieToTokens.Tokens(SearchText);
+
+            List<String> Words = DivieToTokens.Tokens(SearchText);
+            var words = SearchingFilters.FliterHere( Words );
 
             System.out.println("words in Token equal = ");
             for (int i = 0; i < words.size(); i++) {

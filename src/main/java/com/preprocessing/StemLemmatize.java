@@ -36,7 +36,11 @@ public class StemLemmatize {
         DictionaryLemmatizer lemmatizer = new DictionaryLemmatizer(
                 dictLemmatizer);
         String[] lemmas = lemmatizer.lemmatize(tokens, tags);
-
+        for(int i=0;i<lemmas.length;i++){
+            if(lemmas[i].equals("O")){
+                lemmas[i] = inputTokens.get(i);
+            }
+        }
         return new ArrayList<>(Arrays.asList(lemmas));
     }
 

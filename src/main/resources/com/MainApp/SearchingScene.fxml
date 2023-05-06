@@ -48,16 +48,16 @@
             <Font name="Arial Black" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="364.0" layoutY="337.0" text="Pre-Processing:">
+      <Label layoutX="364.0" layoutY="382.0" text="Pre-Processing:">
          <font>
             <Font name="Arial Black" size="18.0" />
          </font>
       </Label>
-      <CheckBox fx:id="Tokenization" layoutX="364.0" layoutY="382.0" mnemonicParsing="false" onAction="#onTokenizationChange" text="Tokenization">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </CheckBox>
+<!--      <CheckBox fx:id="Tokenization" layoutX="364.0" layoutY="382.0" mnemonicParsing="false" onAction="#onTokenizationChange" text="Tokenization">-->
+<!--         <font>-->
+<!--            <Font size="18.0" />-->
+<!--         </font>-->
+<!--      </CheckBox>-->
       <CheckBox fx:id="Normalization" layoutX="364.0" layoutY="421.0" mnemonicParsing="false" onAction="#onNormalizationChange" text="Normalization">
          <font>
             <Font size="18.0" />
@@ -73,11 +73,11 @@
             <Font size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="StopWords" layoutX="362.0" layoutY="531.0" mnemonicParsing="false" onAction="#onStopWordsChange" text="Stop Words">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </CheckBox>
+<!--      <CheckBox fx:id="StopWords" layoutX="362.0" layoutY="531.0" mnemonicParsing="false" onAction="#onStopWordsChange" text="Stop Words">-->
+<!--         <font>-->
+<!--            <Font size="18.0" />-->
+<!--         </font>-->
+<!--      </CheckBox>-->
       <Separator layoutX="292.0" layoutY="364.0" orientation="VERTICAL" prefHeight="194.0" prefWidth="3.0" />
    </children>
 </AnchorPane>

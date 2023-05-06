@@ -147,6 +147,7 @@ public class IndexingScene_Controller implements Initializable {
                 });
             }else if(indixingData.get("IndexWay")=="Positional-index"){
                var matrix= IndexesFactory.setPositionalIndex(cleanedData);
+
             }
         }catch (Exception ex){
             System.out.println(ex);

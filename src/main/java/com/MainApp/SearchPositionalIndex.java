@@ -17,12 +17,12 @@ public class SearchPositionalIndex {
             String key = entry.getKey();
             Map<Integer, List<Integer>> innerMap = entry.getValue();
             System.out.print(key + ":");
-
             if (Token.equals(key)) {
+
                 for (Map.Entry<Integer, List<Integer>> innerEntry : innerMap.entrySet()) {
                     Integer innerKey = innerEntry.getKey();
                     List<Integer> innerList = innerEntry.getValue();
-                    System.out.print(" " + innerKey + ": " + innerList);
+//                    System.out.print(" " + innerKey + ": " + innerList);
 
                     result.add(innerKey);
                 }
@@ -50,7 +50,11 @@ public class SearchPositionalIndex {
         }
 
         try {
-            var words = DivieToTokens.Tokens(SearchText);
+//            var words = DivieToTokens.Tokens(SearchText);
+
+            List<String> Words = DivieToTokens.Tokens(SearchText);
+
+            var words = SearchingFilters.FliterHere( Words );
 
             System.out.println("words in Token equal = ");
             for (int i = 0; i < words.size(); i++) {
