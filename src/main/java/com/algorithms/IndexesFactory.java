@@ -2,6 +2,7 @@ package com.algorithms;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class IndexesFactory {
     private static Map<String, List<Boolean>> incidenceMatrix;
@@ -9,6 +10,30 @@ public class IndexesFactory {
     private static Map<String, List<Integer>> invertedIndex;
 
     private static Map<String, Map<Integer, List<Integer>>> positionalIndex;
+
+    private static Map<String, Set<Integer>> biwordIndex;
+
+    public static Map<String, Set<Integer>> getBywordIndex(){
+        if(biwordIndex!=null){
+            return biwordIndex;
+        }else{
+            try{
+                biwordIndex=IndexesRepository.loadBywordIndexFromFile("D:\\AFinalYear\\IR\\Information-Retrieval-Project\\archive\\biword.txt");
+            }catch (Exception ex){
+                System.out.println(ex);
+            }
+        }
+        return biwordIndex;
+    }
+
+    public static void setByWordIndex(String [] documents){
+        biwordIndex= BywordIndex.buildIndex(documents);
+        try {
+            IndexesRepository.saveByWordIndexToFile("D:\\AFinalYear\\IR\\Information-Retrieval-Project\\archive\\biword.txt", biwordIndex);
+        }catch (Exception ex){
+            System.out.println(ex);
+        }
+    }
     public static Map<String, List<Boolean>> getIncidenceMatrix() {
         if(incidenceMatrix !=null)
             return incidenceMatrix;
@@ -71,4 +96,7 @@ public class IndexesFactory {
         }
         return positionalIndex;
     }
+
+
+
 }

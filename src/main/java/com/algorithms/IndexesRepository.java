@@ -77,12 +77,12 @@ public class IndexesRepository {
         return invertedIndex;
     }
 
-    public static void writepositionalIndexFromFile(Map<String, Map<Integer, List<Integer>>> postionalIndex,String filePath) throws IOException {
+    public static void writepositionalIndexFromFile(Map<String, Map<Integer, List<Integer>>> postionalIndex, String filePath) throws IOException {
         try (FileWriter writer = new FileWriter(filePath)) {
             for (Map.Entry<String, Map<Integer, List<Integer>>> entry : postionalIndex.entrySet()) {
                 String term = entry.getKey();
                 Map<Integer, List<Integer>> postings = entry.getValue();
-                writer.write(term + ": " + " Freq:"+ postings.size());
+                writer.write(term + ": " + " Freq:" + postings.size());
                 for (Map.Entry<Integer, List<Integer>> posting : postings.entrySet()) {
                     int docId = posting.getKey();
                     List<Integer> positions = posting.getValue();
@@ -94,6 +94,7 @@ public class IndexesRepository {
             e.printStackTrace();
         }
     }
+
     public static Map<String, Map<Integer, List<Integer>>> readIndexFromFile(String filePath) throws IOException {
         Map<String, Map<Integer, List<Integer>>> map = new TreeMap<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -113,5 +114,25 @@ public class IndexesRepository {
         }
         reader.close();
         return map;
-}
+
+    }
+
+
+    public static void saveByWordIndexToFile(String filename,Map<String, Set<Integer>> biwordIndex) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
+            out.writeObject(biwordIndex);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Map<String, Set<Integer>> loadBywordIndexFromFile(String filename) {
+        Map<String, Set<Integer>> biwordIndex=null;
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
+            biwordIndex = (Map<String, Set<Integer>>) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return biwordIndex;
+    }
 }
