@@ -16,7 +16,7 @@ public class SearchPositionalIndex {
         for (Map.Entry<String, Map<Integer, List<Integer>>> entry : matrix.entrySet()) {
             String key = entry.getKey();
             Map<Integer, List<Integer>> innerMap = entry.getValue();
-            System.out.print(key + ":");
+           // System.out.print(key + ":");
             if (Token.equals(key)) {
 
                 for (Map.Entry<Integer, List<Integer>> innerEntry : innerMap.entrySet()) {
@@ -28,7 +28,7 @@ public class SearchPositionalIndex {
                 }
             }
 
-            System.out.println();
+           // System.out.println();
         }
 
         return result;
