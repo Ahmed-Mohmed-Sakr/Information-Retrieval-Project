@@ -77,16 +77,16 @@ public class IndexesRepository {
         return invertedIndex;
     }
 
-    public static void writepositionalIndexFromFile(Map<String, Map<Integer, List<Integer>>> postionalIndex,String filePath) throws IOException {
+    public static void writepositionalIndexFromFile(Map<String, Map<Integer, List<Integer>>> postionalIndex, String filePath) throws IOException {
         try (FileWriter writer = new FileWriter(filePath)) {
             for (Map.Entry<String, Map<Integer, List<Integer>>> entry : postionalIndex.entrySet()) {
                 String term = entry.getKey();
                 Map<Integer, List<Integer>> postings = entry.getValue();
-                writer.write(term + ": " + " Freq:"+ postings.size());
+                writer.write(term + ":- ");
                 for (Map.Entry<Integer, List<Integer>> posting : postings.entrySet()) {
                     int docId = posting.getKey();
                     List<Integer> positions = posting.getValue();
-                    writer.write("  " + docId + ": " + positions.toString() + " ");
+                    writer.write( docId + ": " + positions.toString() + " , ");
                 }
                 writer.write("\n");
             }
@@ -94,24 +94,48 @@ public class IndexesRepository {
             e.printStackTrace();
         }
     }
+
     public static Map<String, Map<Integer, List<Integer>>> readIndexFromFile(String filePath) throws IOException {
         Map<String, Map<Integer, List<Integer>>> map = new TreeMap<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
         while ((line = reader.readLine()) != null) {
-            String[] tokens = line.split(":\\s+");
+            String[] tokens = line.split(":-\\s+");
             String term = tokens[0];
-            String[] freqTokens = tokens[1].split("\\s+");
-            int freq = Integer.parseInt(freqTokens[1]);
-            String[] posTokens = tokens[2].trim().split("\\[|\\]|:\\s*");
-            List<Integer> positions = new ArrayList<>();
-            for (int i = 1; i < posTokens.length; i++) {
-                positions.add(Integer.parseInt(posTokens[i]));
+            String[] postings = tokens[1].split("\\s,\\s");
+            for (String posting : postings) {
+                String[] docParts = posting.trim().split(":\\s*");
+                int docid = Integer.parseInt(docParts[0]);
+                String[] posParts = docParts[1].replaceAll("[\\[\\]]", "").split(",\\s+");
+                List<Integer> positions = new ArrayList<>();
+                for (int i = 0; i < posParts.length; i++) {
+                    positions.add(Integer.parseInt(posParts[i]));
+                }
+                Map<Integer, List<Integer>> postingsMap = map.computeIfAbsent(term, k -> new TreeMap<>());
+                postingsMap.put(docid, positions);
             }
-            int docId = posTokens[0].isEmpty() ? 0 : Integer.parseInt(posTokens[0]);
-            map.computeIfAbsent(term, k -> new TreeMap<>()).put(docId, positions);
         }
         reader.close();
+        //System.out.println(map);
         return map;
-}
+    }
+
+
+    public static void saveByWordIndexToFile(String filename,Map<String, Set<Integer>> biwordIndex) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
+            out.writeObject(biwordIndex);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Map<String, Set<Integer>> loadBywordIndexFromFile(String filename) {
+        Map<String, Set<Integer>> biwordIndex=null;
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
+            biwordIndex = (Map<String, Set<Integer>>) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return biwordIndex;
+    }
 }
