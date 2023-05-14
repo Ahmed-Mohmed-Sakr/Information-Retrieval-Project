@@ -21,14 +21,14 @@ public class BywordIndex {
         return biwordIndex;
     }
 
-    protected static Set<Integer> search(String query,Map<String, Set<Integer>> biwordIndex) {
+    public static List<Integer> search(String query,Map<String, Set<Integer>> biwordIndex) {
         String[] queryWords = query.split(" ");
-        Set<Integer> result = new HashSet<>();
+        List<Integer> result = new LinkedList<>();
 
         for (int i = 0; i < queryWords.length - 1; i++) {
             String biword = queryWords[i] + " " + queryWords[i + 1];
             if (!biwordIndex.containsKey(biword)) {
-                return Collections.emptySet();
+                return Collections.emptyList();
             }
             if (result.isEmpty()) {
                 result.addAll(biwordIndex.get(biword));
@@ -40,14 +40,28 @@ public class BywordIndex {
         return result;
     }
 
+    public static List<Integer> searchStar(String query, Map<String, Set<Integer>> biwordIndex) {
+        List<Integer> result = new LinkedList<>();
+
+        for (String biword : biwordIndex.keySet()) {
+            if (biword.startsWith(query)) {
+                result.addAll(biwordIndex.get(biword));
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         String[] documents = {
-                "the quick brown fox",
-                "brown fox jumps over",
-                "the lazy dog"
+                "the quick brown fox yousef here",
+                "brown fox jumps over yousef here",
+                "the lazy dog yousef here again"
         };
         IndexesFactory.setByWordIndex(documents);
         var x=IndexesFactory.getBywordIndex();
-        System.out.println(search("brown fox",x));
+        System.out.println( x );
+
+        System.out.println(search("yousef here",x));
     }
 }

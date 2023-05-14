@@ -22,7 +22,7 @@ public class ReadData {
 
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        String[] res = readDocuments( "D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\archive\\CISI.ALL" );
+        String[] res = readDocuments( "/home/yousef/Level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/CISI.ALL" );
         System.out.println(res[1]);
     }
 

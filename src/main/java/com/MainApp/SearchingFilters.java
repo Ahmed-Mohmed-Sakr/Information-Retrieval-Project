@@ -21,9 +21,9 @@ public class SearchingFilters {
             System.out.println(wordFilter);
             ans.add(wordFilter.get(0));
         }
-        for(var word: ans){
-            System.out.println(word);
-        }
+//        for(var word: ans){
+//            System.out.println(word);
+//        }
         return ans;
     }
 }

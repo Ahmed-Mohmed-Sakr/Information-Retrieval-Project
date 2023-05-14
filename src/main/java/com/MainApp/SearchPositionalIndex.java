@@ -18,7 +18,6 @@ public class SearchPositionalIndex {
             Map<Integer, List<Integer>> innerMap = entry.getValue();
            // System.out.print(key + ":");
             if (Token.equals(key)) {
-
                 for (Map.Entry<Integer, List<Integer>> innerEntry : innerMap.entrySet()) {
                     Integer innerKey = innerEntry.getKey();
                     List<Integer> innerList = innerEntry.getValue();
@@ -27,10 +26,7 @@ public class SearchPositionalIndex {
                     result.add(innerKey);
                 }
             }
-
-           // System.out.println();
         }
-
         return result;
     }
 

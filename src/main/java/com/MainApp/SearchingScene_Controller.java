@@ -10,9 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.apache.lucene.queryparser.classic.ParseException;
-import com.MainApp.SearchIncidenceMatrix;
-import com.MainApp.DivieToTokens;
+import com.MainApp.SearchBiWordIndex;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -165,23 +163,20 @@ public class SearchingScene_Controller implements Initializable {
 
          else if(IndexWay.equals("Positional-index")){
           var matrix= IndexesFactory.getPositionalIndex(); // (get posResult) term:word docId: 1 [pos1, pos2]
-//
-//            for (Map.Entry<String, Map<Integer, List<Integer>>> entry : matrix.entrySet()) {
-//                String key = entry.getKey();
-//                Map<Integer, List<Integer>> innerMap = entry.getValue();
-//                System.out.print(key + ":");
-//                for (Map.Entry<Integer, List<Integer>> innerEntry : innerMap.entrySet()) {
-//                    Integer innerKey = innerEntry.getKey();
-//
-//                    List<Integer> innerList = innerEntry.getValue();
-//                    System.out.print(" " + innerKey + ": " + innerList);
-//                }
-//                System.out.println();
-//            }
-
-            //implement searchCode Here
             try{
                 var ans = SearchPositionalIndex.Search(SearchText);
+                for (int i = 0; i < ans.size(); i++) {
+                    SearchResult += "data found in doucument number --> " + (ans.get(i)+1) + "\n";
+                }
+
+            } catch (Exception exception) {
+                SearchResult = "Error in Showing Data :(";
+            }
+        }
+
+        else if(IndexWay.equals("Bi-word-index")){
+            try{
+                var ans = SearchBiWordIndex.Search(SearchText);
                 for (int i = 0; i < ans.size(); i++) {
                     SearchResult += "data found in doucument number --> " + (ans.get(i)+1) + "\n";
                 }
