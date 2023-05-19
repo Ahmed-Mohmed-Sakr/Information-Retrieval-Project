@@ -18,7 +18,7 @@ public class IndexesFactory {
             return biwordIndex;
         }else{
             try{
-                biwordIndex=IndexesRepository.loadBywordIndexFromFile("/home/yousef/Level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/biword.txt");
+                biwordIndex=IndexesRepository.loadBywordIndexFromFile("/home/yousef/level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/biword.txt");
             }catch (Exception ex){
                 System.out.println(ex);
             }
@@ -29,7 +29,7 @@ public class IndexesFactory {
     public static void setByWordIndex(String [] documents){
         biwordIndex= BywordIndex.buildIndex(documents);
         try {
-            IndexesRepository.saveByWordIndexToFile("/home/yousef/Level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/biword.txt", biwordIndex);
+            IndexesRepository.saveByWordIndexToFile("/home/yousef/Level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/biword.txt", biwordIndex);
         }catch (Exception ex){
             System.out.println(ex);
         }
@@ -38,7 +38,7 @@ public class IndexesFactory {
         if(incidenceMatrix !=null)
             return incidenceMatrix;
         try {
-            incidenceMatrix = IndexesRepository.readIncidenceMatrixFromFile("/home/yousef/Level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/IncidenceMatrix.txt");
+            incidenceMatrix = IndexesRepository.readIncidenceMatrixFromFile("/home/yousef/Level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/IncidenceMatrix.txt");
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -49,7 +49,7 @@ public class IndexesFactory {
     public static Map<String ,List<Boolean>> setIncidenceMatrix(List<List<String>>documents){
         incidenceMatrix=IncidenceMatrix.createMatrix(documents);
         try {
-            IndexesRepository.writeIncidenceMatrixToFile(incidenceMatrix, "/home/yousef/Level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/IncidenceMatrix.txt");
+            IndexesRepository.writeIncidenceMatrixToFile(incidenceMatrix, "/home/yousef/Level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/IncidenceMatrix.txt");
         }catch (Exception ex){
             System.out.println(ex);
         }
@@ -59,7 +59,7 @@ public class IndexesFactory {
         if(invertedIndex !=null)
             return invertedIndex;
         try {
-            invertedIndex = IndexesRepository.readInvertedIndexFromFile("/home/yousef/Level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/InvertedIndex.txt");
+            invertedIndex = IndexesRepository.readInvertedIndexFromFile("/home/yousef/Level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/InvertedIndex.txt");
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -69,7 +69,7 @@ public class IndexesFactory {
     public static Map<String, List<Integer>> setInvertedIndex(List<List<String>>documents){
         invertedIndex=InvertedIndex.createInvertedIndex(documents);
         try{
-            IndexesRepository.writeInvertedIndexToFile(invertedIndex,"/home/yousef/Level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/InvertedIndex.txt");
+            IndexesRepository.writeInvertedIndexToFile(invertedIndex,"/home/yousef/Level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/InvertedIndex.txt");
         }catch (Exception ex){
             System.out.println(ex);
         }
@@ -80,7 +80,7 @@ public class IndexesFactory {
         if(positionalindex !=null)
             return positionalindex;
         try {
-            positionalindex = IndexesRepository.readIndexFromFile("/home/yousef/Level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/positionalIndex.txt");
+            positionalindex = IndexesRepository.readIndexFromFile("/home/yousef/level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/positionalIndex.txt");
         } catch (Exception ex) {
             System.out.println("read excption");
         }
@@ -90,7 +90,7 @@ public class IndexesFactory {
     public static Map<String, Map<Integer, List<Integer>>> setPositionalIndex(List<List<String>>documents){
         positionalindex = positionalIndex.positionalIndexAlgorithm(documents);
         try{
-            IndexesRepository.writepositionalIndexFromFile(positionalindex,"/home/yousef/Level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/positionalIndex.txt");
+            IndexesRepository.writepositionalIndexFromFile(positionalindex,"/home/yousef/level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/positionalIndex.txt");
         }catch (Exception ex){
             System.out.println(ex);
         }

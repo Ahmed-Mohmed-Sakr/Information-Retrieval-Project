@@ -18,7 +18,13 @@ public class SearchBiWordIndex {
         return BywordIndex.searchStar( Token , allToken );
     }
 
-    public static boolean AND = false, OR = false, star = false;
+    public static List<Integer> SearchBiWordEnd(String Token) {
+        var allToken = IndexesFactory.getBywordIndex();
+        return BywordIndex.searchEndWith( Token , allToken );
+    }
+
+    public static boolean AND = false, OR = false;
+    public static int star = -1 ;
     public static void AndOr( String SearchText ){
         for (int i = 0; i < SearchText.length(); i++) {
             if (SearchText.charAt(i) == '&')
@@ -28,14 +34,14 @@ public class SearchBiWordIndex {
                 OR = true;
 
             if (SearchText.charAt(i) == '*')
-                star = true;
+                star = i;
 
         }
     }
 
     public static List<Integer> Search( String SearchText ){
 
-        AND = false; OR = false;  star = false;
+        AND = false; OR = false;  star = -1;
         AndOr( SearchText );
         List<Integer> ans = new ArrayList<>();
 
@@ -49,9 +55,32 @@ public class SearchBiWordIndex {
             for (int i = 0; i < words.size(); i++) {
                 System.out.println(words.get(i));
             }
-            if( star == true ){
-                var ret = SearchBiWordSatr( words.get(0) );
-                ans = ret;
+
+            if( star != -1 ){
+                if( star == words.get(0).length()  && words.size() == 1 ) {
+                    var ret = SearchBiWordSatr(words.get(0));
+                    ans = ret;
+                } else if ( star == 0 ) {
+                    var ret = SearchBiWordEnd(words.get(0));
+                    ans = ret;
+                }else{
+                    var ret1 = SearchBiWordSatr(words.get(0));
+                    var ret2 = SearchBiWordEnd(words.get(1));
+
+                    Set<Integer> uniqueElements = new LinkedHashSet<>();
+
+                    for (int i = 0; i < ret1.size(); i++) {
+                        for (int j = 0; j < ret2.size(); j++) {
+                            if (ret1.get(i) == ret2.get(j)) {
+                                uniqueElements.add(ret1.get(i));
+                                break;
+                            }
+                        }
+                    }
+
+                    ans.addAll(uniqueElements);
+
+                }
             }
             else if (AND == false && OR == false) {
                 String BiWord = words.get(0) + " " + words.get(1) ;

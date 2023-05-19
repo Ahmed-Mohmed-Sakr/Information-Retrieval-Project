@@ -52,10 +52,22 @@ public class BywordIndex {
         return result;
     }
 
+    public static List<Integer> searchEndWith(String query, Map<String, Set<Integer>> biwordIndex) {
+        List<Integer> result = new LinkedList<>();
+
+        for (String biword : biwordIndex.keySet()) {
+            if (biword.endsWith(query)) {
+                result.addAll(biwordIndex.get(biword));
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         String[] documents = {
-                "the quick brown fox yousef here",
-                "brown fox jumps over yousef here",
+                "the quick brown fox yousef* here",
+                "brown fox jumps over yousef again",
                 "the lazy dog yousef here again"
         };
         IndexesFactory.setByWordIndex(documents);

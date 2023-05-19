@@ -116,7 +116,7 @@ public class IndexingScene_Controller implements Initializable {
     public void onDoneButtonClicked(ActionEvent e) throws Exception {
 
         try{
-            String []data= ReadData.readDocuments("/home/yousef/Level 4/term2/information retrieval/project/Information-Retrieval-Project/archive/CISI.ALL");
+            String []data= ReadData.readDocuments("/home/yousef/level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/CISI.ALL");
 
             ArrayList<List<String>> cleanedData=new ArrayList<>();
             int z1 =0;

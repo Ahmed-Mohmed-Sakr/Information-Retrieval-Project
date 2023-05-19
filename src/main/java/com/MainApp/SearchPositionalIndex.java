@@ -2,10 +2,7 @@ package com.MainApp;
 
 import com.algorithms.IndexesFactory;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SearchPositionalIndex {
 
@@ -29,6 +26,40 @@ public class SearchPositionalIndex {
         }
         return result;
     }
+
+    public static List<Integer> searchPhrase(String query) {
+
+        Map<String, Map<Integer, List<Integer>>> positionalIndex = IndexesFactory.getPositionalIndex();
+        String[] terms = query.split(" ");
+        List<Integer> result = new ArrayList<>();
+
+        if (terms.length == 0) {
+            return result;
+        }
+
+        Map<Integer, List<Integer>> firstTermPositions = positionalIndex.getOrDefault(terms[0], Collections.emptyMap());
+        for (Integer docId : firstTermPositions.keySet()) {
+            List<Integer> positions = firstTermPositions.get(docId);
+            for (Integer pos : positions) {
+                boolean found = true;
+                for (int i = 1; i < terms.length; i++) {
+                    Map<Integer, List<Integer>> nextTermPositions = positionalIndex.getOrDefault(terms[i], Collections.emptyMap());
+                    List<Integer> nextPositions = nextTermPositions.getOrDefault(docId, Collections.emptyList());
+                    if (!nextPositions.contains(pos + i)) {
+                        found = false;
+                        break;
+                    }
+                }
+                if (found) {
+                    result.add(docId);
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
+
 
 
     public static List<Integer> Search( String SearchText ){
@@ -57,8 +88,11 @@ public class SearchPositionalIndex {
                 System.out.println(words.get(i));
             }
             System.out.println("-------------------------------------");
-
-            if (AND == false && OR == false) {
+            if( words.size() > 2 ){
+                var ret = searchPhrase( SearchText );
+                ans = ret;
+            }
+            else if (AND == false && OR == false) {
                 var ret = SearchYaLeazy(words.get(0));
                 ans = ret;
 
