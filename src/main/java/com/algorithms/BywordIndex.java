@@ -1,16 +1,15 @@
 package com.algorithms;
 
+import com.DataSet.ReadData;
+
+import java.io.IOException;
 import java.util.*;
 
 public class BywordIndex {
-
-
-
-
     protected static Map<String, Set<Integer>> buildIndex(String[] documents) {
-        Map<String, Set<Integer>> biwordIndex =new HashMap<>();
+        Map<String, Set<Integer>> biwordIndex =new TreeMap<>();
         for (int i = 0; i < documents.length; i++) {
-            String[] words = documents[i].split(" ");
+            String[] words = documents[i].toLowerCase().split("[\\s.;,()/:'?!$*+#^\"]+");
             for (int j = 0; j < words.length - 1; j++) {
                 String biword = words[j] + " " + words[j + 1];
                 Set<Integer> postings = biwordIndex.getOrDefault(biword, new HashSet<>());
@@ -23,7 +22,8 @@ public class BywordIndex {
 
     public static List<Integer> search(String query,Map<String, Set<Integer>> biwordIndex) {
         String[] queryWords = query.split(" ");
-        List<Integer> result = new LinkedList<>();
+
+        Set<Integer> result = new TreeSet<>();
 
         for (int i = 0; i < queryWords.length - 1; i++) {
             String biword = queryWords[i] + " " + queryWords[i + 1];
@@ -37,11 +37,11 @@ public class BywordIndex {
             }
         }
 
-        return result;
+        return new LinkedList<>(result);
     }
 
     public static List<Integer> searchStar(String query, Map<String, Set<Integer>> biwordIndex) {
-        List<Integer> result = new LinkedList<>();
+        Set<Integer> result = new TreeSet<>();
 
         for (String biword : biwordIndex.keySet()) {
             if (biword.startsWith(query)) {
@@ -49,31 +49,42 @@ public class BywordIndex {
             }
         }
 
-        return result;
+        return new LinkedList<>(result);
     }
 
     public static List<Integer> searchEndWith(String query, Map<String, Set<Integer>> biwordIndex) {
-        List<Integer> result = new LinkedList<>();
+        Set<Integer> result = new TreeSet<>();
 
         for (String biword : biwordIndex.keySet()) {
             if (biword.endsWith(query)) {
+                System.out.println(biword);
                 result.addAll(biwordIndex.get(biword));
             }
         }
 
-        return result;
+        return new LinkedList<>(result);
     }
 
     public static void main(String[] args) {
-        String[] documents = {
-                "the quick brown fox yousef* here",
-                "brown fox jumps over yousef again",
-                "the lazy dog yousef here again"
-        };
-        IndexesFactory.setByWordIndex(documents);
-        var x=IndexesFactory.getBywordIndex();
-        System.out.println( x );
+//        String[] documents = {
+//                "the quick brown fox yousef here",
+//                "brown fox jumps over yousef again",
+//                "the lazy dog yousef here again"
+//        };
+//        try {
+//            String[]data= ReadData.readDocuments("D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\archive\\CISI.ALL");
+//            for(int i=0;i<=2;i++){
+//                System.out.println("============ (" +(i+1) +")===========");
+//                data[i] = data[i].toLowerCase();
+//
+//            }
+//            IndexesFactory.setByWordIndex(data);
+            var x=IndexesFactory.getBywordIndex();
+//           // System.out.println("hererrrr => "+ x);
+//        System.out.println("doc indexs");
 
-        System.out.println(search("yousef here",x));
+
+
+        System.out.println(search("work control",x));
     }
 }

@@ -48,8 +48,8 @@ public class SearchBiWordIndex {
         try {
 
             System.out.println( SearchText );
-            List<String> Words = DivieToTokens.Tokens(SearchText);
-            var words = SearchingFilters.FliterHere( Words );
+            List<String> words = DivieToTokens.Tokens(SearchText);
+//            var words = SearchingFilters.FliterHere( Words );
 
             System.out.println("words in Token equal = " + words.size() );
             for (int i = 0; i < words.size(); i++) {

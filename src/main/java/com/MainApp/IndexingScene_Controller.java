@@ -116,8 +116,11 @@ public class IndexingScene_Controller implements Initializable {
     public void onDoneButtonClicked(ActionEvent e) throws Exception {
 
         try{
-            String []data= ReadData.readDocuments("/home/yousef/level 4/term2/information retrieval/finla project/Information-Retrieval-Project/archive/CISI.ALL");
-
+            String []data= ReadData.readDocuments("D:\\fourth-year\\Second Semster\\IR\\Project\\Information-Retrieval-Project\\archive\\CISI.ALL");
+//            for(int i=0;i<data.length;i++){
+//                System.out.println("============ (" +(i+1) +")===========");
+//                data[i] = data[i].toLowerCase();
+//            }
             ArrayList<List<String>> cleanedData=new ArrayList<>();
             int z1 =0;
             for(var d:data){
@@ -132,6 +135,7 @@ public class IndexingScene_Controller implements Initializable {
 
             if(indixingData.get("IndexWay")=="Bi-word-index") {
                 IndexesFactory.setByWordIndex(data);
+
                 System.out.println( "i am finishing ya man" );
             }
             else if(indixingData.get("IndexWay")=="Incidence-matrix") {

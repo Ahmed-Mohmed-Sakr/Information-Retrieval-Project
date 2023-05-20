@@ -8,7 +8,7 @@ import java.util.List;
 public class SearchingFilters {
     public static List<String> FliterHere( List<String> words ) throws Exception {
 
-        System.out.println( words );
+        //System.out.println( words );
 
         List<String> ans = new ArrayList<>() ;
         ArrayList<String> wordFilter = new ArrayList<>();

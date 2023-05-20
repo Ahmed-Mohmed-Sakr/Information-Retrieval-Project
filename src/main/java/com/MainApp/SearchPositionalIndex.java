@@ -28,7 +28,7 @@ public class SearchPositionalIndex {
     }
 
     public static List<Integer> searchPhrase(String query) {
-
+        //System.out.println(query + " here ");
         Map<String, Map<Integer, List<Integer>>> positionalIndex = IndexesFactory.getPositionalIndex();
         String[] terms = query.split(" ");
         List<Integer> result = new ArrayList<>();
